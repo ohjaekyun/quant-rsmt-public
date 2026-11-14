@@ -1093,14 +1093,14 @@ def test_renderer_recovers_after_forced_launch_failure(monkeypatch, pdf_renderer
 _DRIVER_KILL_SCRIPT = """
 import os, signal, time
 from playwright.sync_api import Page
-from quantcio.report.render import PdfRenderer, count_pdf_pages
+from quantcio.report.render import PdfRenderer, _driver_transport, count_pdf_pages
 
 groups = set()
 
 def kill_driver(r):
     assert r._browser_groups, "browser process group not recorded"
     groups.update(r._browser_groups)
-    os.kill(r._pw._impl_obj._connection._transport._proc.pid, signal.SIGKILL)
+    os.kill(_driver_transport(r._pw)._proc.pid, signal.SIGKILL)
 
 def alive(g):
     try:

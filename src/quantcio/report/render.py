@@ -2609,12 +2609,25 @@ def _driver_alive(pw: Any) -> bool:
 
     After that a sync-API call can spin forever at 100% CPU (playwright 1.63 `_sync`: `while not task.done():
     dispatcher.switch()` on a dispatcher greenlet that has already finished), so the renderer must not touch that
-    browser again. Unknown Playwright internals -> True (the previous behaviour)."""
+    browser again. Playwright >= 1.65 fails such calls with TargetClosedError instead and records it on the
+    connection (`_closed_error`). Unknown Playwright internals -> True (the previous behaviour)."""
     try:
         conn = pw._impl_obj._connection
-        return not conn._dispatcher_fiber.dead and not conn._transport.on_error_future.done()
+        if getattr(conn, "_closed_error", None) is not None or conn._dispatcher_fiber.dead:
+            return False
+        return not _driver_transport(pw).on_error_future.done()
     except AttributeError:
         return True
+
+
+def _driver_transport(pw: Any) -> Any:
+    """The pipe transport to the Playwright driver process (`._proc` is the driver, `.on_error_future` completes
+    when the pipe breaks). Playwright < 1.65 keeps it on the connection; 1.65 moved it to the client owned by the
+    sync context manager, which is reachable through the bound `stop`. AttributeError when neither layout matches."""
+    conn = pw._impl_obj._connection
+    if hasattr(conn, "_transport"):
+        return conn._transport
+    return pw.stop.__self__._client._transport
 
 
 def _browser_process_groups(pw: Any) -> set[int]:
@@ -2627,7 +2640,7 @@ def _browser_process_groups(pw: Any) -> set[int]:
 
         table = _process_table()
         own = os.getpgid(0)
-        kids = descendants(pw._impl_obj._connection._transport._proc.pid, table)
+        kids = descendants(_driver_transport(pw)._proc.pid, table)
         return {table[p][1] for p in kids if p in table and table[p][1] != own}
     except Exception:  # noqa: BLE001 - best effort; the render itself does not depend on it
         return set()

@@ -34,7 +34,9 @@ version = "0.1.0"
 description = "Quant + LLM trading-signal report generator for CIO decision support (KR + US equities)"
 requires-python = ">=3.12"  # PEP 695 제네릭, datetime.UTC 사용
 dependencies = [
-    "anthropic>=1.8",
+    # <2: 2.x sends API version 2026-10-21 and Bearer auth, a different wire from the one verified in
+    # docs/sources/anthropic-sdk.json (tests/test_llm_client.py asserts it) - migrate deliberately, not by resolver
+    "anthropic>=1.8,<2",
     "pydantic>=2.7",
     "pydantic-settings>=2.3",
     "pandas>=2.2",

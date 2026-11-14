@@ -1,0 +1,103 @@
+{
+ "probe": {
+  "area": "us-midcap: the US cross-sectional holdout (XSH) universe, i.e. S&P MidCap 400 members that were never point-in-time S&P 500 members since backtest.us_start (2012-01-01). Everything was run live on 2026-09-27 with .venv/bin/python (pandas 2.3.3, lxml). Implementation: src/quantcio/data/pit/us_midcap.py (public: load_us_midcap_universe; dispatcher quantcio.data.pit.load_pit_xsh_universe). Offline tests: tests/test_pit_us_midcap.py. Holdout hygiene: only DATA coverage was measured; no feature/return relation, no per-name or aggregate return statistics were computed on these names.",
+  "working": [
+   {
+    "name": "Wikipedia 'List of S&P 400 companies' current table (id=constituents)",
+    "purpose": "Today's 400 constituents.",
+    "output_shape": "6 columns: Symbol, Security, GICS Sector, GICS Sub-Industry, Headquarters Location, SEC filings. The SEC filings link is browse-edgar?CIK=<n> for 119/400 rows (numeric CIK) and CIK=<ticker> for the other 281, which map through sec.gov/files/company_tickers.json (all 400 mapped on 2026-09-27).",
+    "coverage": "400 rows on 2026-09-27; the 2026-09-21 rebalance (+HUBS/AGNC/CORT/EAT..., -SAM/CPRI/P/ILMN...) already applied.",
+    "notes": "Parsed with pandas.read_html(extract_links='body', flavor='lxml'); the layout is guarded (6 columns, first 'Symbol') and a change raises MembershipError. flavor='lxml' matters: without it a page with no table falls back to html5lib, which is not installed."
+   },
+   {
+    "name": "Wikipedia 'Selected past and announced changes to the list of S&P 400 components' (id=changes)",
+    "purpose": "Dated additions/removals for the backward reconstruction.",
+    "output_shape": "Two-row header: Date | Added (Ticker, Security) | Removed (Ticker, Security) | Reason. Date and Reason cells use rowspan (read_html expands them); dates may carry footnotes ('August 9, 2019[186]'); some rows are one-sided (spin-off added, or a removal alone); multi-class cells 'UA/UAA'.",
+    "coverage": "623 rows, 2012-01-13 .. 2026-09-21. Rows per year: 2012 17, 2013 25, 2014 43, 2015 16, 2016 41, 2017 54, 2018 44, 2019 43, 2020 46, 2021 52, 2022 45, 2023 60, 2024 41, 2025 33, 2026 32 (to Sep). The title says 'Selected': clearly incomplete before 2016; rows with a date after today are announced changes and are skipped.",
+    "notes": "Symbol renames are NOT listed (like the S&P 500 page): PSTG->P, CHK->EXE, ZI->GTM, GPS->GAP, HTA->HR, ELY->MODG, BRKS->AZTA, ADS->BFH, IIVI->COHR, AAXN->AXON, CFX->ENOV, WTW->WW, WYND->TNL, APY->CHX, SGMS->LNW, INCR->SYNH, ESV->VAL, JCOM->ZD, HYH->AVNS, POL->AVNT, SAI->LDOS, FII->FHI, DV->ATGE, TPX->SGI, WXS->WEX (25 found by CIK). Reused tickers: COHR (Coherent Inc -> II-VI), HR (Healthcare Realty -> HTA), VAL (Valspar -> Valaris), CZR (Caesars -> Eldorado)."
+   },
+   {
+    "name": "Wikipedia page revisions (MediaWiki API: prop=revisions list + action=parse&oldid=<rev>)",
+    "purpose": "The constituents table as editors kept it at each month-end (point-in-time information, no hindsight): fills what the change table lacks and validates the reconstruction.",
+    "output_shape": "1,369 revisions 2010-12-31 .. 2026-09-26. The revision in force at 21:00 UTC of each month-end session 2012-01..2026-09 (177 month-ends, 146 distinct revisions) parses to a ticker/name table; column names changed over time ('Ticker Symbol'/'Company' until 2020, 'Security'/'Ticker symbol' 2020-2023, 'Symbol'/'Security' since).",
+    "coverage": "175/177 revision tables are complete (388-412 rows); 2013-08 (376 rows) and 2015-05 (397) are partial and ignored. The page went unedited for long stretches while the index changed: 2019-01..2019-08 ~0 table edits vs ~20 dated changes, 2019-11..2020-09 ~0 vs ~40, then 148 edits in 2020-10..12. A revision is used for validation only when 'fresh' (it reflects >= 80% of the changes dated 7-90 days before it, or nothing changed then): 89 of 175 revisions are fresh with evidence.",
+    "notes": "~2-3 s per parse call server-side; cached forever under <cache>/pit/us/sp500_v1/sp400/rev/<revid>.json.gz (immutable). The revision list is refreshed weekly."
+   },
+   {
+    "name": "CIK-keyed backward reconstruction (reconstruct_spells) + revision bridging",
+    "purpose": "Month-end membership 2012..today.",
+    "output_shape": "Spells (ticker, cik, start, end=first day out, alias for renames) -> the S&P 500 builder's window/event frames.",
+    "coverage": "1,026 spells; CIK for every spell (m1_wayback 574, sec_current 281, wiki_current 119, m3_name 38, m2_wikidata 12, m1_unvalidated 2). Anomalies: 25 renames matched by CIK, 9 additions whose removal row is missing (8 bridged by revisions, 1 unresolved: covers no month-end), 2 re-additions without a row (bridged). Issuers open 'since before 2012' with no addition row: first month-end of their final run in fresh revisions after >= 3 not listing them (spin-offs WH/REZI, new-CIK successors DINO/TKO/CXT, ...). Issuers listed by complete revisions for >= 2 month-ends but never in the change table are added when the ticker maps to a CIK via the dated SEC ticker files (Akorn, Office Depot, Crane Co., Aaron's Inc., ...).",
+    "notes": "Rename dates: last SEC FTD print of the old ticker's CUSIP (else the first SEC ticker-file capture of the new ticker)."
+   },
+   {
+    "name": "Validation series (reconstruction vs fresh revisions, issuer keys, best of the same and next 2 month-end revisions)",
+    "purpose": "Decide from which month-end the membership is point-in-time.",
+    "coverage": "Median agreement (issuer keys, best of the same and next 2 month-end revisions) at fresh month-ends by year: 2013 0.80, 2015 0.86, 2016 0.93, 2017 0.94 (0.946-0.973 from 2017-07), 2018 0.97, 2019 0.956, 2020 0.985, 2021-2026 0.995-1.00. Validating (fresh) month-ends from 2017-07-31: 2017-07..2017-12, 2018-04/07/08/10, 2019-10/11, 2020-12 onward (the page was stale 2018-11..2019-09 and 2019-12..2020-11; the reconstruction there is bracketed by fresh anchors agreeing >= 0.95). pit_from = 2017-07-31; minimum agreement at validating month-ends since then 0.953 (2019-11-29).",
+    "notes": "Residual disagreements at fresh month-ends 2017-2019 are 7-20 issuer keys of ~400: same-company key mismatches (JW-A vs WLY, BXS vs CADE), S&P 500 promotions whose S&P 400 removal row is missing (ATO, ROL, RE, PKG, AOS, RMD, WRB - excluded anyway), a few names added from the revisions. Since 2021: 0-4."
+   }
+  ],
+  "failing": [
+   {
+    "name": "iShares IJH historical holdings (1467271812596.ajax?fileType=csv&asOfDate=YYYYMMDD)",
+    "error": "HTTP 200 but an HTML page (1.46 MB, identical for every date) instead of the CSV on 2026-09-27.",
+    "workaround": "Not used; the Wikipedia change table + page revisions are the dated sources."
+   },
+   {
+    "name": "Ticker-keyed backward walk",
+    "error": "Renamed tickers never match their addition rows: the count drifts from 400 today to 431 in 2012 and the removed names they replaced reappear.",
+    "workaround": "Key the walk by SEC CIK (rename_cik) and split the spell at the rename date."
+   },
+   {
+    "name": "Page revisions as a month-by-month membership source",
+    "error": "Stale for up to ~10 months (2019-2020), then caught up in bulk; same-month agreement with the reconstruction drops to 0.76-0.87 although the change table is complete there.",
+    "workaround": "Use a revision only when fresh; stale revisions neither pass nor fail a month-end."
+   },
+   {
+    "name": "Trimming open-start spells against every revision",
+    "error": "Partial tables (2013-08, 2015-05) and pre-2017 tickers without a CIK mapping read as absences: 104 spells were cut and 2012 counts fell to 303.",
+    "workaround": "Complete (388-412 rows) and fresh revisions only, >= 3 consecutive absences before the final run."
+   }
+  ],
+  "recommended_design": "load_us_midcap_universe(settings, cache, start, end=None, exclude=()) -> PITUniverse (dispatcher load_pit_xsh_universe(Market.US, ...)). Membership from the CIK-keyed backward reconstruction with revision bridging, prices/ranks/fundamentals from the S&P 500 builder (us._Builder subclass: SEC-FTD-validated Yahoo series, FTD fills and terminal marks, XBRL shares x price rank with a dollar-volume fallback), SPY as the benchmark of every entity, no RSP tracking check (it would aggregate holdout returns). The S&P 500 exclusion (PIT S&P 500 entities since us_start + chain CIKs, issuers carrying an S&P 500 ticker, issuers in today's S&P 500 table) is applied before any price/XBRL work; the caller's exclude after the cached build. The full build is cached per (inputs, today, code versions) under <cache>/pit/us/build_v1/midcap_<key>.pkl and pruned after 3 days. The S&P 500 build's known_entities.json / entity_splits.pkl are never written. coverage['pit_from'] / ['survivorship_biased'] / ['biased_dates'] tell the evaluation which month-ends are point-in-time.",
+  "full_build_estimate": "2026-09-27, S&P 500 PIT build already cached: cold mid-cap build 710 s (membership+CIK 8.5 s with warm SEC/Wikipedia caches, FTD panel 4.9 s, Yahoo resolution 217 s for 759 chart requests, XBRL 450 s for ~600 companyfacts + snapshot panels in a process pool). The first-ever membership step (SEC submissions/Wayback validation for ~600 removed names, 177 revision parses at ~2-3 s each) took ~4 min + ~10 min extra. Warm rebuild from raw caches 49 s; a same-day repeat is a pickle hit. New cache: Yahoo +100 MB, XBRL +23 MB, SEC submissions ~+20 MB, Wikipedia revisions 11 MB, build pickle 89 MB (<cache>/pit/us/build_v1/midcap_<key>.pkl, pruned after 3 days).",
+  "gotchas": [
+   "Excluding every issuer that was EVER an S&P 500 member since 2012 removes names promoted LATER at all dates: a look-ahead selection that under-represents future large-cap winners in the XSH cross-section. Counted as exclusion_sp500.excluded_sp500_entity_promoted_later.",
+   "Ticker-based exclusion (an issuer that carried a ticker an S&P 500 member carried) is conservative and drops some unrelated issuers (e.g. Alcoa Corp 'AA' vs Alcoa Inc); holdout.tuning_names compares tickers too, so registering them would fail anyway.",
+   "The change table is 'Selected' changes; before 2017-07 the reconstruction is SURVIVORSHIP-BIASED (today's survivors appear too early, removed names are missing).",
+   "Revision tables list share classes as 'UA/UAA' or separate rows; 'JW.A' / 'MOG.A' spell classes with '.': normalise with '-' (Yahoo/SEC).",
+   "Timestamp.max + days overflows in pandas: use a far sentinel for open spells.",
+   "The S&P 500 PIT build and the page caches can be momentarily inconsistent while the 24h Wikipedia refresh runs (the lead saw a transient MembershipError on 2026-09-27 15:41)."
+  ]
+ },
+ "verify": {
+  "area": "Real run from 2012-01-01 on 2026-09-27 (last completed session 2026-09-25), QUANTCIO_NO_RECORD=1, background script. DATA coverage only: no feature/return relation and no return statistics were computed on these names.",
+  "checks": [
+   {
+    "name": "membership",
+    "reproduced": true,
+    "observed": "Today's table 400 names (119 numeric CIK links, rest via SEC company_tickers; 0 unmapped). 623 change rows. 1,036 spells, 0 without CIK (m1_wayback 359, sec_current 249, wiki_current 99, m3_name 34, m2_wikidata 9, m1_unvalidated 1, revision supplements 8 in window). Anomalies: 25 renames by CIK (13 split at the last FTD print of the old ticker), 9 missing removal rows (8 bridged by revisions, 1 unresolved), 2 missing re-addition rows (bridged); 38 open-start spells trimmed by fresh revisions, 41 without revision evidence kept; 10 supplement spells (9 issuers). Month-end counts of the full S&P 400 reconstruction 374-401 (65 month-ends outside 390-410, all before 2017).",
+    "issues": "pit_from 2017-07-31: 66 month-ends 2012-01..2017-06 are SURVIVORSHIP-BIASED (coverage flag)."
+   },
+   {
+    "name": "exclusion",
+    "reproduced": true,
+    "observed": "PIT S&P 500 since 2012: 781 entities, 826 tickers. S&P 400 issuers overlapping 2012-01..2026-08: 979; excluded 244 (S&P 500 entity 234 - 130 of them promoted to the S&P 500 AFTER their first mid-cap month-end, 104 demoted or members before; ticker shared with an S&P 500 member 9: AA, ALTR, ATGE, COHR, COR, DOC, JEF, LSI, WW; in today's S&P 500 table 1). 48 of today's 400 members are excluded. Retained 735 issuers. holdout.tuning_names (1,598 names) as the caller exclusion drops 0 further issuers.",
+    "issues": "Excluding later promotions is a look-ahead selection (future winners removed)."
+   },
+   {
+    "name": "prices",
+    "reproduced": true,
+    "observed": "735 entities, 501 with a daily Yahoo frame (499 total-return adjusted, 2 split-adjusted only: no FTD evidence), 234 without (FTD month-end marks only; acquired/delisted names Yahoo dropped). Member-months 53,920 over 176 month-ends (269-349 names per date, median 311): daily prices 41,466 (76.9%), FTD-only 10,029 (18.6%), missing 2,425 (4.5%). PIT window 2017-07-31..2026-08-31: 110 month-ends, 302-349 names per date (median 325), 613 entities, 35,619 member-months: daily 86.9%, FTD-only 8.8%, missing 4.3%. Yahoo share rises from 52% (2012) to 98% (2026). Validation: 4 wrong-issuer Yahoo series rejected (BGC, CPWR, SPWR, SUNE), 2 entities with 501 FTD-contradicted rows masked, 4 partial series, 1 stub series, 12 FTD monthly moves outside -60%..+100% treated as missing. Terminal marks: FTD 178, Yahoo last bar 1; 183 entities delisted.",
+    "issues": ""
+   },
+   {
+    "name": "fundamentals and rank",
+    "reproduced": true,
+    "observed": "load_us_pit_fundamentals path (_fundamentals) works for non-S&P 500 CIKs: 733/735 entities with XBRL rows (2 without), 35,084 rows; shares_out present in ~96% of rows every year, NI ~0.96-0.97, revenue ~0.81-0.83, op income ~0.76 (2012+). Every month-end ranked by PIT market cap (176/176 dates >= 80% share coverage); 1,127 member-months imputed from 60-session dollar volume; 2,004 member-months without any rank value (no price at the date) ranked last.",
+    "issues": ""
+   }
+  ],
+  "final_recommendation": "Use load_pit_xsh_universe(Market.US, settings, cache, date(2012,1,1), exclude=holdout.tuning_names(...)) and evaluate on month-ends >= coverage['pit_from'] (2017-07-31), or print the SURVIVORSHIP-BIASED caveat for earlier dates. Also print: later S&P 500 promotions excluded at all dates (look-ahead, under-represents future winners), ticker-reuse over-exclusion (9 issuers), membership from Wikipedia (not the S&P constituent file; validated >= 0.95 issuer agreement at up-to-date revisions), 4.3% of PIT-window member-months without any price and 8.8% with FTD month-end prices only (price-only, no dividends), SPY as benchmark for mid caps (size tilt vs SPY)."
+ }
+}

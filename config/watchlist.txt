@@ -1,0 +1,14 @@
+# QuantCIO 관심 종목 (watchlist)
+#
+# `quantcio report`를 종목 옵션(-t, --top, --bottom, --watchlist) 없이 실행하면 이 파일의 종목으로 리포트를 만듭니다.
+# - KR은 6자리 종목코드, US는 티커. 쉼표·공백·줄바꿈으로 구분하고, '#' 뒤는 주석입니다.
+# - 다른 파일을 쓰려면: quantcio report --watchlist my_list.txt
+# - 모델이 고른 종목과 섞으려면: quantcio report --top 3 --watchlist config/watchlist.txt
+#
+# 아래는 예시입니다. 자유롭게 바꾸세요.
+005930   # 삼성전자
+000660   # SK하이닉스
+035420   # NAVER
+AAPL
+MSFT
+NVDA

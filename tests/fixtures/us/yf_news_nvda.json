@@ -1,0 +1,112 @@
+[
+ {
+  "id": "id-1",
+  "content": {
+   "id": "id-1",
+   "contentType": "STORY",
+   "title": "Nvidia unveils Rubin Ultra roadmap at GTC Paris",
+   "summary": "Nvidia said its next accelerator will ship in 2027 with twice the memory bandwidth.",
+   "description": "<p>Nvidia said its next accelerator will ship in 2027 with twice the memory bandwidth.</p>",
+   "pubDate": "2026-09-23T14:00:00Z",
+   "displayTime": "2026-09-23T14:00:00Z",
+   "provider": {
+    "displayName": "Reuters",
+    "url": "https://example.com"
+   },
+   "canonicalUrl": {
+    "url": "https://example.com/nv-rubin"
+   },
+   "clickThroughUrl": {
+    "url": "https://example.com/nv-rubin"
+   }
+  }
+ },
+ {
+  "id": "id-2",
+  "content": {
+   "id": "id-2",
+   "contentType": "STORY",
+   "title": "Why Fastly Stock Jumped Today",
+   "summary": "Shares of the edge-cloud company rallied after an upgrade.",
+   "description": "<p>Shares of the edge-cloud company rallied after an upgrade.</p>",
+   "pubDate": "2026-09-23T13:00:00Z",
+   "displayTime": "2026-09-23T13:00:00Z",
+   "provider": {
+    "displayName": "Motley Fool",
+    "url": "https://example.com"
+   },
+   "canonicalUrl": {
+    "url": "https://example.com/fastly"
+   },
+   "clickThroughUrl": {
+    "url": "https://example.com/fastly"
+   }
+  }
+ },
+ {
+  "id": "id-3",
+  "content": {
+   "id": "id-3",
+   "contentType": "VIDEO",
+   "title": "Market open: stocks rally on rate-cut hopes",
+   "summary": "",
+   "description": "<p></p>",
+   "pubDate": "2026-09-23T13:35:00Z",
+   "displayTime": "2026-09-23T13:35:00Z",
+   "provider": {
+    "displayName": "Yahoo Finance Video",
+    "url": "https://example.com"
+   },
+   "canonicalUrl": {
+    "url": "https://example.com/video"
+   },
+   "clickThroughUrl": {
+    "url": "https://example.com/video"
+   }
+  }
+ },
+ {
+  "id": "id-4",
+  "content": {
+   "id": "id-4",
+   "contentType": "STORY",
+   "title": "NVDA stock slips as chip export rules tighten",
+   "summary": "Shares of NVDA fell 1.5% after new U.S. export rules.",
+   "description": "<p>Shares of NVDA fell 1.5% after new U.S. export rules.</p>",
+   "pubDate": "2026-09-22T20:10:00Z",
+   "displayTime": "2026-09-22T20:10:00Z",
+   "provider": {
+    "displayName": "MarketWatch",
+    "url": "https://example.com"
+   },
+   "canonicalUrl": {
+    "url": "https://example.com/nvda-export"
+   },
+   "clickThroughUrl": {
+    "url": "https://example.com/nvda-export"
+   }
+  }
+ },
+ {
+  "id": "id-5",
+  "content": {
+   "id": "id-5",
+   "contentType": "STORY",
+   "title": "Nvidia's 2025 annual meeting recap",
+   "summary": "An old item outside the lookback window.",
+   "description": "<p>An old item outside the lookback window.</p>",
+   "pubDate": "2026-08-01T12:00:00Z",
+   "displayTime": "2026-08-01T12:00:00Z",
+   "provider": {
+    "displayName": "Barron's",
+    "url": "https://example.com"
+   },
+   "canonicalUrl": {
+    "url": "https://example.com/old"
+   },
+   "clickThroughUrl": {
+    "url": "https://example.com/old"
+   }
+  }
+ }
+]

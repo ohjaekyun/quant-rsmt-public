@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="{{ t.html_lang }}">
+<head>
+<meta charset="utf-8">
+<title>{{ title }} — {{ as_of }}</title>
+<style>{{ css }}</style>
+</head>
+<body class="c{{ level }}{{ ' lang-en' if en }}">
+
+{# ================================================================ PAGE 1 : decision page #}
+<header class="top">
+  <div class="brand">
+    <div class="eyebrow">QuantCIO · CIO Trading Signal</div>
+    <h1>{{ title }}</h1>
+    <div class="subtitle">{{ subtitle }}</div>
+  </div>
+  <dl class="meta">
+    <div><dt>{{ t.m_asof }}</dt><dd>{{ as_of }}</dd></div>
+    <div><dt>{{ t.m_gen }}</dt><dd>{{ generated }}</dd></div>
+    <div><dt>{{ t.m_univ }}</dt><dd>{{ universe }}</dd></div>
+    <div><dt>{{ t.m_ccy }}</dt><dd>{{ base_currency }}{% if capital %} · {{ t.m_capital }} {{ capital }}{% endif %}</dd></div>
+    <div><dt>{{ t.m_horizon }}</dt><dd>{{ horizon_meta }}</dd></div>
+    <div><dt>{{ t.m_digest }}</dt><dd class="mono">{{ digest }}</dd></div>
+  </dl>
+</header>
+<div class="chips-row">
+  <span class="chips-label">{{ t.regime }}</span>
+  {% for r in regime %}<span class="chip"><b>{{ r.k }}</b> {{ r.v }}</span>{% else %}<span class="chip">—</span>{% endfor %}
+  <span class="chip">LLM <b>{{ llm_model }}</b></span>
+</div>
+{% if macro %}
+<div class="macro-strip">
+  <span class="chips-label">{{ t.macro }}<span class="m-asof">{{ macro.as_of }}</span></span>
+  {% for c in macro.cells %}<div class="mcell m-{{ c.cls }}"><div class="mh"><b>{{ c.name }}</b><span class="mlab">{{ c.label }}</span><span class="num msc">{{ c.score }}</span>{% if c.mult %}<span class="mmult">{{ t.macro_exposure }} <b class="num">{{ c.mult }}</b></span>{% endif %}{% if c.n_stale %}<span class="mflag">{{ t.macro_stale }} {{ c.n_stale }}</span>{% endif %}{% if c.n_warn %}<span class="mflag">⚠ {{ t.macro_warn }} {{ c.n_warn }}</span>{% endif %}</div><div class="mi">{% for i in c.inds %}<span class="mind">{{ i.label }} <b class="num">{{ i.value }}</b> <span class="num z{{ ' neg' if i.neg }}">z {{ i.z }}</span></span>{% else %}<span class="na">—</span>{% endfor %}</div></div>{% endfor %}
+</div>
+{% endif %}
+{% if notes %}
+<div class="chips-row notes-row">
+  {% for n in notes %}<span class="chip {{ n.cls }}">{% if n.cls in ('warn', 'over') %}⚠ {% endif %}{{ n.text }}</span>{% endfor %}
+</div>
+{% endif %}
+
+<section class="mod" id="m1">
+  <h2><span class="no">1</span>{{ headings[1] }}<small>{{ t.m1_sub }}</small></h2>
+  <table class="matrix">
+    <colgroup>
+      <col style="width:16%"><col style="width:10.5%"><col style="width:10.5%"><col style="width:20%">
+      <col style="width:10%"><col style="width:10%"><col style="width:7%"><col style="width:10%"><col style="width:6%">
+    </colgroup>
+    <thead><tr>
+      <th>{{ t.th_name }}</th><th>{{ t.th_signal }}</th><th>{{ t.th_conf }}</th><th>{{ t.th_pillars }} <span class="sub">{{ t.th_pillars_sub }}</span></th>
+      <th class="r">{{ t.th_price }}</th><th class="r">{{ t.th_target }}</th><th class="r">{{ t.th_upside }}</th><th>{{ t.th_horizon }}</th><th class="r">{{ t.th_weight }}</th>
+    </tr></thead>
+    {% for r in rows %}
+    <tbody class="row">
+      <tr class="main">
+        <td class="name"><b>{{ r.name }}</b>{% if r.n_alerts %}<span class="alert-dot{{ ' crit' if r.has_critical }}">⚠ {{ r.n_alerts }}</span>{% endif %}<span class="sub">{{ r.sub }}</span></td>
+        <td><span class="badge b-{{ r.signal.cls }}">{{ r.signal.value }}</span></td>
+        <td><div class="conf"><div class="bar"><i style="width:{{ r.confidence|w }}%"></i></div><span class="num">{{ r.conf_txt }}</span></div></td>
+        <td class="pillars"><div class="pgrid"><div>
+          {% for p in r.pillars %}<div class="pl"><span>{{ p.label }}</span><span class="div-bar">{% if not p.missing %}<i class="{{ 'neg' if p.neg }}" style="left:{{ p.left|w }}%;width:{{ p.width|w }}%"></i>{% endif %}</span><span class="pl-v">{{ p.txt }}</span></div>{% endfor %}
+          </div><div class="comp"><b>{{ r.composite }}</b><span class="sub">{{ t.composite }}</span></div></div></td>
+        <td class="r num">{{ r.price }}</td>
+        <td class="r num">{{ r.target }}</td>
+        <td class="r num up-txt {{ 'neg' if r.upside_neg else 'pos' }}">{{ r.upside }}</td>
+        <td>{{ r.horizon }}</td>
+        <td class="r num {{ 'muted' if r.weight_zero }}">{{ r.weight }}</td>
+      </tr>
+      <tr class="thesis"><td colspan="9"><span class="tri">▸</span>{% if r.earnings %}<span class="chip ern{{ ' hot' if r.earnings.hot }}">{{ r.earnings.txt }} <span class="ern-d">{{ r.earnings.date }}</span></span>{% endif %}{% if r.ref %}<span class="chip ref{{ ' top' if r.ref.top }}">{{ r.ref.txt }}</span>{% endif %}{% if r.avoid %}<span class="chip ref avoid">{{ r.avoid.txt }}</span>{% endif %}{{ r.thesis }}{% for o in r.overrides %}<span class="chip override">⚠ {{ o }}</span>{% endfor %}</td></tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</section>
+
+<section class="summary keep">
+  <h3 class="sub-h">{{ t.summary_h }}<small>{{ summary_sub }}</small></h3>
+  <div class="summary-grid">
+    <div class="alloc">
+      <div class="alloc-head"><span>{{ t.invested }} <b>{{ portfolio.invested_txt }}</b></span><span>{{ t.cash }} <b>{{ portfolio.cash_txt }}</b></span></div>
+      <div class="alloc-bar">{% for s in portfolio.segments %}<i style="width:{{ s.w|w }}%;background:{{ s.color }}"></i>{% endfor %}{% if portfolio.cash_w > 0 %}<i class="cash" style="width:{{ portfolio.cash_w|w }}%"></i>{% endif %}</div>
+      <div class="alloc-legend">
+        {% for s in portfolio.segments %}<span><i style="background:{{ s.color }}"></i>{{ s.name }} <span class="num">{{ s.txt }}</span></span>{% endfor %}
+        <span><i class="cash"></i>{{ t.cash }} <span class="num">{{ portfolio.cash_txt }}</span></span>
+      </div>
+      {% if portfolio.alloc_gap %}<div class="chip warn alloc-gap">{{ t.alloc_gap }}</div>{% endif %}
+    </div>
+    <div class="tiles">
+      <div class="tile sigdist"><div class="t-label">{{ t.sigdist }}</div><div class="t-value">{% for c in portfolio.counts %}<span class="badge b-{{ c.cls }}">{{ c.value }} {{ c.n }}</span>{% endfor %}</div></div>
+      {% for t in portfolio.tiles %}<div class="tile{{ ' warn' if t.warn }}"><div class="t-label">{{ t.label }}</div><div class="t-value">{{ t.value }}</div><div class="t-sub">{{ t.sub }}</div></div>{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="alerts{{ ' none' if not n_alerts }}">
+  <div class="alerts-head">{% if n_alerts %}{{ alerts_title }}{% for c in alert_counts %} <span class="chip k-{{ c.kind }}">{{ c.label }} {{ c.n }}</span>{% endfor %}{% else %}{{ t.alerts_none }}{% endif %}</div>
+  {% if alert_groups %}
+  <ul>{% for g in alert_groups %}<li><b>{{ g.name }}</b>{% for a in g.entries %}<span class="al k-{{ a.kind }}">{{ a.text }}</span>{% if not loop.last %} · {% endif %}{% endfor %}</li>{% endfor %}</ul>
+  {% endif %}
+</section>
+
+{% if show_charts %}
+<section class="charts">
+  <h3 class="sub-h">{{ t.charts_h }}
+    <span class="chart-legend">
+      <span><svg viewBox="0 0 14 6"><line x1="0" y1="3" x2="14" y2="3" stroke="#1b1b1a" stroke-width="1.6"/></svg>{{ t.lg_close }}</span>
+      <span><svg viewBox="0 0 14 6"><line x1="0" y1="3" x2="14" y2="3" stroke="#2a78d6" stroke-width="1.6"/></svg>MA50</span>
+      <span><svg viewBox="0 0 14 6"><line x1="0" y1="3" x2="14" y2="3" stroke="#eb6834" stroke-width="1.6"/></svg>MA200</span>
+      <span><svg viewBox="0 0 14 6"><rect x="0" y="0" width="14" height="6" fill="#2a78d6" fill-opacity="0.18"/></svg>{{ t.lg_entry }}</span>
+      <span><svg viewBox="0 0 14 6"><line x1="0" y1="3" x2="14" y2="3" stroke="#1a7f3c" stroke-width="1.6"/></svg>{{ t.lg_tp }}</span>
+      <span><svg viewBox="0 0 14 6"><line x1="0" y1="3" x2="14" y2="3" stroke="#c62828" stroke-width="1.6"/></svg>{{ t.lg_sl }}</span>
+      <span><svg viewBox="0 0 14 6"><line x1="0" y1="3" x2="14" y2="3" stroke="#0b5e2f" stroke-width="1.6" stroke-dasharray="3 2"/></svg>{{ t.lg_target }}</span>
+    </span>
+  </h3>
+  <div class="chart-grid">
+    {% for r in rows %}
+    <figure>
+      <figcaption><b>{{ r.name }}</b><span><span class="badge sm b-{{ r.signal.cls }}">{{ r.signal.value }}</span> <span class="num">{{ r.price }}</span></span></figcaption>
+      {% if r.chart and r.chart.svg %}{{ r.chart.svg }}{% else %}<div class="nochart">{{ t.nochart }}</div>{% endif %}
+    </figure>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{# ================================================================ PAGE 2 : quant & ML, LLM #}
+<section class="mod{{ ' page-break' if page_break_m2 }}" id="m2">
+  <h2><span class="no">2</span>{{ headings[2] }}<small>{{ m2_sub }}</small></h2>
+  {% if order %}
+  <div class="refm keep">
+  <h3 class="sub-h">{{ t.ord_h }}<small>{{ order.sub }}</small></h3>
+  {% for b in order.blocks %}
+  <div class="ord">
+    {% set p = b.primary %}
+    <div class="ord-head"><b>{{ p.label }}</b><span class="ord-period">{{ p.period }}</span></div>
+    {% if p.tiles %}<div class="ord-tiles">{% for x in p.tiles %}<div class="tile"><div class="t-label">{{ x.label }}</div><div class="t-value">{{ x.value }}</div></div>{% endfor %}</div>{% endif %}
+    {% if p.halves %}<div class="ord-grid">{% for h in p.halves %}
+      <table class="ord-t">{% if p.other_label %}<colgroup><col style="width:6%"><col style="width:42%"><col style="width:22%"><col style="width:15%"><col style="width:15%"></colgroup>{% else %}<colgroup><col style="width:7%"><col style="width:48%"><col style="width:27%"><col style="width:18%"></colgroup>{% endif %}<thead><tr><th class="c">{{ t.ord_rank }}</th><th>{{ t.th_name }}</th><th>{{ t.fm_sector }}</th><th class="r">{{ t.ord_pos }}</th>{% if p.other_label %}<th class="c">{{ p.other_label }}</th>{% endif %}</tr></thead>
+      <tbody>{% for n in h %}<tr class="{{ 'mine' if n.mine }}"><td class="c num">{{ n.rank }}</td><td class="name"><b>{{ n.name }}</b> <span class="t">{{ n.ticker }}</span></td><td class="sector">{{ n.sector }}</td><td class="r num">{{ n.pos }}</td>{% if p.other_label %}<td class="c">{{ '○' if n.other }}</td>{% endif %}</tr>{% endfor %}</tbody></table>
+    {% endfor %}</div>{% else %}<div class="na">—</div>{% endif %}
+    <div class="ord-warn">⚠ {{ p.caveat }}{% if p.stale %} · {{ p.stale }}{% endif %}</div>
+    {% if b.rows %}<div class="ord-row"><span class="lbl">{{ t.ord_names }}</span>{% for r in b.rows %}<span class="chip{{ ' top' if r.top }}"><b>{{ r.name }}</b> <span class="t">{{ r.ticker }}</span>{% for c in r.cells %} <span class="num{{ ' hi' if c.top }}">{% if b.legend %}{{ c.abbr }} {% endif %}{{ c.v }}</span>{% endfor %}{% if r.outside %}*{% endif %}</span>{% endfor %}</div>{% endif %}
+    {% if b.legend %}<div class="fm-foot">{{ b.legend }}</div>{% endif %}
+    {% for l in b.others %}
+    <div class="ord-row"><span class="lbl">{{ l.label }}</span>{% for n in l.top %}<span class="chip{{ ' top' if n.mine }}{{ ' both' if n.common }}">{{ n.name }} <span class="t">{{ n.ticker }}</span></span>{% else %}<span class="na">—</span>{% endfor %}</div>
+    {% if l.stats %}<div class="fm-foot">{{ l.stats }}</div>{% endif %}
+    <div class="fm-foot">⚠ {{ l.caveat }}{% if l.stale %} · {{ l.stale }}{% endif %}</div>
+    {% endfor %}
+    {% if b.common %}<div class="fm-foot">{{ t.ord_common }}: {{ b.common }}</div>{% endif %}
+    {% if b.has_outside %}<div class="fm-foot">{{ t.ord_outside }}</div>{% endif %}
+  </div>
+  {% endfor %}
+  {% if order.absent %}<div class="fm-foot">{{ order.absent }}</div>{% endif %}
+  </div>
+  {% endif %}
+  {% if avoid %}
+  <div class="refm keep">
+  <h3 class="sub-h">{{ avoid.h }}<small>{{ avoid.sub }}</small></h3>
+  <div class="ord">
+    <div class="ord-row"><span class="lbl">{{ t.ord_names }}</span>{% for r in avoid.rows %}<span class="chip avoid"><b>{{ r.name }}</b> <span class="t">{{ r.ticker }}</span> <span class="num">{{ r.pos }}</span></span>{% else %}<span class="na">{{ avoid.none }}</span>{% endfor %}</div>
+    {% if avoid.stats %}<div class="fm-foot">{{ avoid.stats }}</div>{% endif %}
+    <div class="fm-foot">⚠ {{ avoid.caveat }}{% if avoid.stale %} · {{ avoid.stale }}{% endif %}</div>
+  </div>
+  </div>
+  {% endif %}
+  <table class="quant">
+    <colgroup>
+      <col style="width:14%">
+      <col style="width:9.6%"><col style="width:9.6%"><col style="width:9.6%"><col style="width:9.6%"><col style="width:9.6%">
+      <col style="width:6%"><col style="width:8%"><col style="width:7%"><col style="width:10%"><col style="width:7.4%">
+    </colgroup>
+    <thead><tr>
+      <th>{{ t.th_name }}</th>
+      {% for f in rows[0].factors %}<th>{{ f.label }}</th>{% endfor %}
+      {% if sel_cols %}
+      <th class="r">{{ t.th_fcomp }}</th><th class="r">{{ t.th_sel_pct }}</th><th class="r">{{ t.th_sel_mu }}</th><th class="r">{{ t.th_sel_money if sel_money else t.th_sel_auc }}</th><th class="c">{{ t.th_ml_skill }}</th>
+      {% else %}
+      <th class="r">{{ t.th_fcomp }}</th><th class="r">{{ t.th_ml_er }}</th><th class="r">{{ t.th_ml_pup }}</th><th class="r">{{ t.th_oos }}</th><th class="c">{{ t.th_ml_skill }}</th>
+      {% endif %}
+    </tr></thead>
+    <tbody>
+    {% for r in rows %}
+      <tr>
+        <td class="name one"><b>{{ r.name }}</b> <span class="t">{{ r.ticker }}</span></td>
+        {% for f in r.factors %}<td><div class="fcell{{ ' na' if f.missing }}"><div class="fbar">{% if not f.missing %}<i style="width:{{ f.w|w }}%"></i>{% endif %}</div><span class="num">{{ f.txt }}</span></div></td>{% endfor %}
+        <td class="r num"><b>{{ r.factor_comp }}</b></td>
+        {% if sel_cols %}
+        {% if r.sel %}
+        <td class="r num"><b>{{ r.sel.pct }}</b></td>
+        <td class="r num {{ 'neg' if r.sel.mu_neg else '' }}">{{ r.sel.mu }}</td>
+        <td class="r num">{{ r.sel.auc }} / {{ r.sel.hold }}{% if r.sel.confirmed %} · {{ t.sel_confirmed }}{% endif %}</td>
+        <td class="c">{% if r.sel.skill %}<span class="skill ok">{{ t.skill_ok }}</span>{% else %}<span class="skill no">{{ t.skill_no }}</span>{% endif %}</td>
+        {% else %}
+        <td class="r num muted">—</td><td class="r num muted">—</td><td class="r num muted">—</td>
+        <td class="c"><span class="skill no">{{ t.ml_none }}</span></td>
+        {% endif %}
+        {% elif r.ml %}
+        <td class="r num {{ 'neg' if r.ml.er_neg else '' }}">{{ r.ml.er }}</td>
+        <td class="r num">{{ r.ml.pup }}</td>
+        <td class="r num">{{ r.ml.auc }} · {{ r.ml.ic }}</td>
+        <td class="c">{% if r.ml.skill %}<span class="skill ok">{{ t.skill_ok }}</span>{% else %}<span class="skill no">{{ t.skill_no }}</span>{% endif %}</td>
+        {% else %}
+        <td class="r num muted">—</td><td class="r num muted">—</td><td class="r num muted">—</td>
+        <td class="c"><span class="skill no">{{ t.ml_none }}</span></td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% if factor_model %}
+  <h3 class="sub-h">{{ t.fm_h }}<small>{{ fm_sub }}</small></h3>
+  <table class="fmodel">
+    <colgroup>
+      <col style="width:14%"><col style="width:11%"><col style="width:5.5%"><col style="width:5%"><col style="width:5%">
+      <col style="width:6.5%"><col style="width:6.5%"><col style="width:6.5%"><col style="width:11%"><col style="width:6%">
+      <col style="width:5.5%"><col style="width:10.5%"><col style="width:7%">
+    </colgroup>
+    <thead><tr>
+      <th>{{ t.th_name }}</th><th>{{ t.fm_pct }}</th><th class="r">{{ t.fm_z }}</th><th class="r">PER</th><th class="r">PBR</th><th class="r">{{ t.fm_vol }}</th>
+      <th class="r">3M</th><th class="r">6M</th><th>{{ t.fm_sector }}</th><th class="r">{{ t.fm_sec_m3 }}</th><th class="r">{{ t.fm_model }}</th><th class="r">{{ t.fm_pillar }} <span class="sub">{{ t.fm_pillar_sub }}</span></th><th class="c">{{ t.fm_skill }}</th>
+    </tr></thead>
+    <tbody>
+    {% for r in factor_model %}
+      <tr>
+        <td class="name one"><b>{{ r.name }}</b> <span class="t">{{ r.ticker }}</span>{% if r.fm and r.fm.notes %}<sup class="fm-mark">ⓘ</sup>{% endif %}</td>
+        {% if r.fm %}
+        <td><div class="fcell pct"><div class="fbar"><i style="width:{{ r.fm.pct_w|w }}%"></i></div><span class="num">{{ r.fm.pct }}</span></div></td>
+        <td class="r num">{{ r.fm.score }}</td>
+        <td class="r num">{{ r.fm.per }}</td>
+        <td class="r num">{{ r.fm.pbr }}</td>
+        <td class="r num">{{ r.fm.vol }}</td>
+        <td class="r num {{ 'neg' if r.fm.m3_neg }}">{{ r.fm.m3 }}</td>
+        <td class="r num {{ 'neg' if r.fm.m6_neg }}">{{ r.fm.m6 }}</td>
+        <td class="sector">{{ r.fm.sector }}</td>
+        <td class="r num">{{ r.fm.sec_m3 }}</td>
+        <td class="r num">{{ r.fm.pillar }}</td>
+        <td class="r num"><b>{{ r.fm.legacy }} → {{ r.fm.blended }}</b></td>
+        <td class="c">{% if r.fm.skill %}<span class="skill ok">{{ t.skill_ok }}</span>{% else %}<span class="skill no">{{ t.skill_no }}</span>{% endif %}</td>
+        {% else %}
+        <td colspan="12" class="muted">— {{ t.fm_none }}</td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% for r in factor_model if r.fm and r.fm.notes %}<div class="fm-foot"><sup>ⓘ</sup> <b>{{ r.name }}</b> {{ r.fm.notes|join(' · ') }}</div>{% endfor %}
+{% endif %}
+{% if backtest %}
+  <h3 class="sub-h">{{ t.bt_h }}<small>{{ t.bt_ls }} {{ t.bt_ls_sub }} · BH q={{ backtest[0].bh_q }}</small></h3>
+  <div class="bt-grid{{ ' one' if backtest|length == 1 }}">
+  {% for b in backtest %}
+    <div class="bt">
+      <div class="bt-h"><b>{{ b.label }}</b><span class="bt-meta">{{ b.meta }}</span></div>
+      <table class="bt-t">
+        <colgroup><col style="width:36%"><col style="width:14%"><col style="width:20%"><col style="width:16%"><col style="width:14%"></colgroup>
+        <thead><tr><th>{{ t.bt_factor }}</th><th class="r">{{ t.bt_ic_t }}</th><th class="r">{{ t.bt_ls }}</th><th class="r">{{ t.bt_sharpe }}</th><th class="c">{{ t.bt_bh }}</th></tr></thead>
+        <tbody>
+        {% for r in b.rows %}<tr><td>{{ r.label }}{% if r.dir_bad %} <span class="bt-bad">{{ t.bt_dir_bad }}</span>{% endif %}</td><td class="r num {{ 'neg' if r.ic_neg }}">{{ r.ic_t }}</td><td class="r num {{ 'neg' if r.ls_neg }}">{{ r.ls }}</td><td class="r num">{{ r.sharpe }}</td><td class="c">{{ '✓' if r.bh else '—' }}</td></tr>{% endfor %}
+        {% if b.model.present %}<tr class="bt-model"><td><b>{{ t.bt_model }}</b>{% if b.model.months %} <span class="muted">{{ b.model.months }}M</span>{% endif %}</td><td class="r num"><b>{{ b.model.ic_t }}</b></td><td class="r num {{ 'neg' if b.model.ls_neg }}">{{ b.model.ls }}</td><td class="r num">{{ b.model.sharpe }}</td><td class="c">{% if b.model.skill %}<span class="skill ok">{{ t.skill_ok }}</span>{% else %}<span class="skill no">{{ t.skill_no }}</span>{% endif %}</td></tr>{% endif %}
+        </tbody>
+      </table>
+    </div>
+  {% endfor %}
+  </div>
+{% endif %}
+  <h3 class="sub-h">{{ t.rsmt_h }}<small>{{ rsmt_sub }}</small></h3>
+  <table class="rsmt">
+    <colgroup>
+      <col style="width:12.5%"><col style="width:10%"><col style="width:6%"><col style="width:7%"><col style="width:15.5%">
+      <col style="width:8%"><col style="width:30.5%"><col style="width:10.5%">
+    </colgroup>
+    <thead><tr>
+      <th>{{ t.th_name }}</th><th class="r">{{ t.th_er }} <span class="sub">{{ t.th_er_sub }}</span></th><th class="r">{{ t.th_pup }}</th><th class="r">{{ t.th_pout }}</th><th class="c">{{ t.th_band }} <span class="sub">{{ t.th_band_sub }}</span></th>
+      <th class="r">VaR95 <span class="sub">CVaR95</span></th><th>{{ t.th_leaf }} <span class="sub">{{ t.th_leaf_sub }}</span></th><th class="c">{{ t.th_state }}</th>
+    </tr></thead>
+    <tbody>
+    {% for r in rows %}
+      <tr>
+        <td class="name one"><b>{{ r.name }}</b> <span class="t">{{ r.ticker }}</span></td>
+        {% if r.dist %}
+        <td class="r num {{ 'neg' if r.dist.er_neg else '' }}"><b>{{ r.dist.er }}</b><span class="sub">μ {{ r.dist.mu }} · σ {{ r.dist.sigma }}</span></td>
+        <td class="r num">{{ r.dist.pup }}</td>
+        <td class="r num">{{ r.dist.pout }}</td>
+        <td>{% if r.dist.band %}<div class="band"><span class="zero" style="left:{{ r.dist.band.zero|w }}%"></span><i class="{{ 'cl' if r.dist.band.clip_lo }} {{ 'cr' if r.dist.band.clip_hi }}" style="left:{{ r.dist.band.left|w }}%;width:{{ r.dist.band.width|w }}%"></i><span class="mid" style="left:{{ r.dist.band.mid|w }}%"></span></div>{% endif %}<div class="band-txt num">{{ r.dist.band_txt }}</div></td>
+        <td class="r num">{{ r.dist.var95 }}<span class="sub">{{ r.dist.cvar95 }}</span></td>
+        <td class="leaf"><b>{{ r.dist.leaf }}</b> <span class="muted">{{ r.dist.leaf_n }} · {{ r.dist.blend }}</span><span class="path">{{ r.dist.leaf_path }}</span></td>
+        <td class="c">{% if r.dist.degraded %}<span class="skill deg">{{ t.degraded }}</span><span class="deg-reason">{{ r.dist.degraded_reasons }}</span>{% elif r.dist.skill %}<span class="skill ok">{{ t.skill_ok }}</span>{% else %}<span class="skill no">{{ t.skill_no }}</span>{% endif %}</td>
+        {% else %}
+        <td class="r num muted">—</td><td class="r num muted">—</td><td class="r num muted">—</td><td class="c muted">—</td><td class="r num muted">—</td><td class="muted">—</td>
+        <td class="c"><span class="skill no">{{ t.nodist }}</span></td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="diag-grid{{ ' one' if diagnostics|length == 1 }}">
+  {% for d in diagnostics %}
+    <div class="diag">
+      <div class="diag-h"><span>{{ t.diag_h }} · {{ d.label }}</span>
+        <small>{% if d.skill is none %}<span class="skill na">{{ t.diag_na }}</span>{% elif d.skill %}<span class="skill ok">{{ t.cv_ok }}</span>{% else %}<span class="skill no">{{ t.cv_no }}</span>{% endif %}
+        {% if d.n_degraded %}<span class="skill deg">{{ t.degraded }} {{ d.n_degraded }}/{{ d.n_served }}</span>{% endif %}</small></div>
+      {% if d.sel %}<div class="trust sel t-{{ d.sel.cls }}"><span class="lbl">{{ t.diag_sel }}</span><span class="v">{{ d.sel.text }}</span><span class="detail">{{ d.sel.detail }}</span></div>{% endif %}
+      <div class="trust t-{{ d.trust.cls }}"><span class="lbl">{{ t.trust }}</span><span class="v">{{ d.trust.text }}</span>{% if d.trust.detail %}<span class="detail">{{ d.trust.detail }}</span>{% endif %}</div>
+      <div class="cvrow">{% for m in d.metrics %}<div class="cv{{ ' good' if m.good == true }}{{ ' bad' if m.good == false }}">{{ m.label }}<b>{{ m.v }}</b><span class="cvb">{{ t.base }} {{ m.b }}</span></div>{% endfor %}</div>
+      <div class="params">{{ t.params }} {{ d.params }}</div>
+      {% if d.has_lines %}<div class="tree">{% for l in d.lines %}<div class="ln{{ ' al' if l.alert }}">{{ l.text }}</div>{% endfor %}</div>{% if d.hidden %}<div class="more">{{ diag_more.format(n=d.hidden) }}</div>{% endif %}
+      {% else %}<div class="chip warn">{{ t.nodiag }}</div>{% endif %}
+    </div>
+  {% endfor %}
+  </div>
+</section>
+
+<section class="mod" id="m3">
+  <h2><span class="no">3</span>{{ headings[3] }}<small>{{ t.m3_sub }}</small></h2>
+  <div class="cards">
+  {% for r in rows %}
+    <div class="card">
+      <div class="card-h">
+        <div class="ch-name"><b>{{ r.name }}</b><span class="t">{{ r.ticker }}</span><span class="badge sm b-{{ r.signal.cls }}">{{ r.signal.value }}</span></div>
+        {% if r.news %}
+        <div class="senti"><span class="lbl">{{ t.senti }}</span><span class="gauge"><i class="{{ 'neg' if r.news.gauge.neg }}" style="left:{{ r.news.gauge.left|w }}%;width:{{ r.news.gauge.width|w }}%"></i></span><b>{{ r.news.score_txt }}</b><span>{{ r.news.counts }}{% if r.news.trend %} · {{ t.d7 }} <span class="trend{{ ' neg' if r.news.trend.neg }}{{ ' pos' if r.news.trend.pos }}">{{ r.news.trend.txt }}</span>{% endif %}</span></div>
+        {% else %}
+        <div class="senti"><span class="lbl">{{ t.senti }}</span><b>—</b><span>{{ t.senti_skipped if r.llm_skipped else t.no_news }}</span></div>
+        {% endif %}
+      </div>
+      {% if r.llm_skipped %}<div class="chip warn">{{ t.llm_skipped }}</div>{% endif %}
+      {% if r.critical_flag %}<div class="chip crit">{{ t.crit_flag }}{{ r.critical_flag }}</div>{% endif %}
+      {% if r.news and r.news.lines %}
+      <div class="news-lines">{% for l in r.news.lines %}<div class="nl {{ l.cls }}"><span class="sg">{{ l.sign }}</span><span>{{ l.text }}</span></div>{% endfor %}</div>
+      {% endif %}
+      {% if r.filings %}
+      <div class="fil-h">{{ t.fil_h }} <span class="meta">{{ t.guidance }} {{ r.filings.guidance }} · {{ t.tone }} {{ r.filings.tone }}</span></div>
+      <ul class="bul">{% for b in r.filings.bullets %}<li>{{ b }}</li>{% else %}<li class="na">{{ t.no_summary }}</li>{% endfor %}</ul>
+      {% if r.filings.highlights %}<div class="hl"><span class="lbl">{{ t.earnings }}</span>{{ r.filings.highlights }}</div>{% endif %}
+      {% elif not r.llm_skipped %}
+      <div class="fil-h">{{ t.fil_h }}</div><div class="na">{{ t.no_filings }}</div>
+      {% endif %}
+      <div class="risks"><span class="lbl">{{ t.risks }}</span>{% for k in r.risks %}<span class="risk"><span class="sev s-{{ k.sev }}">{{ k.sev_ko }}</span>{{ k.title }}</span>{% else %}<span class="na">—</span>{% endfor %}</div>
+      {% if r.contradiction %}<div class="contra">{{ t.contra }}{{ r.contradiction }}</div>{% endif %}
+      {% for e in r.llm_errors %}<div class="chip crit">{{ t.llm_err }}{{ e }}</div>{% endfor %}
+      {% for n in r.llm_notices %}<div class="chip warn notice">{{ t.llm_notice }}{{ n }}</div>{% endfor %}
+    </div>
+  {% endfor %}
+  </div>
+</section>
+
+{# ================================================================ PAGE 3 : execution & risk #}
+<section class="mod" id="m4">
+  <div class="keep">
+  <h2><span class="no">4</span>{{ headings[4] }}<small>{{ t.m4_sub }}{% if barrier_h_txt %}{{ m4_sub_h }}{% endif %}</small></h2>
+  <div class="key"><span><i style="background:var(--tp)"></i>{{ t.key_tp }}</span><span><i style="background:var(--time)"></i>{{ t.key_time }}</span><span><i style="background:var(--sl)"></i>{{ t.key_sl }}</span>{% if barrier_h_txt %}<span class="key-h{{ ' warn' if barrier_h_missing }}">· {{ barrier_h_txt }}</span>{% endif %}</div>
+  <table class="exec">
+    <colgroup>
+      <col style="width:11%"><col style="width:8.5%"><col style="width:6%"><col style="width:8.5%"><col style="width:10.5%">
+      <col style="width:9.5%"><col style="width:9.5%"><col style="width:8.5%"><col style="width:4.5%"><col style="width:11.5%">
+      <col style="width:5.5%"><col style="width:6.5%">
+    </colgroup>
+    <thead><tr>
+      <th>{{ t.th_name }}</th><th>{{ t.th_signal2 }}</th><th class="r">{{ t.th_weight }}</th><th class="r">{{ t.th_shares }} <span class="sub">{{ t.th_shares_sub }}</span></th><th class="r">{{ t.th_entry }}</th>
+      <th class="r">{{ t.th_sl }}</th><th class="r">{{ t.th_tp }}</th><th class="r">TP2</th><th class="r">R:R</th>
+      <th>{{ t.th_exit }} <span class="sub">{% if barrier_h_txt %}{{ barrier_h_short }} · {% endif %}{{ t.th_exit_sum }}</span></th><th class="r">{{ t.th_exp }} <span class="sub">{{ t.th_exp_sub }}</span></th><th class="r">Kelly <span class="sub">f*×{{ kelly_cap }}</span></th>
+    </tr></thead>
+    <tbody>
+    {% for r in rows %}
+      <tr>
+        <td class="name"><b>{{ r.name }}</b><span class="sub">{{ r.ticker }}</span></td>
+        <td><span class="badge sm b-{{ r.signal.cls }}">{{ r.signal.value }}</span></td>
+        <td class="r num {{ 'muted' if r.weight_zero else '' }}"><b>{{ r.weight }}</b></td>
+        <td class="r num">{{ r.shares }}<span class="sub">{{ r.position_value }}</span></td>
+        <td class="r num">{{ r.entry_low }}<span class="sub">~ {{ r.entry_high }}</span></td>
+        <td class="r num">{{ r.sl }}<span class="sub neg">{{ r.sl_pct }}</span></td>
+        <td class="r num">{{ r.tp }}<span class="sub pos">{{ r.tp_pct }}</span></td>
+        <td class="r num">{{ r.tp2 }}<span class="sub">{{ r.tp2_pct }}</span></td>
+        <td class="r num">{{ r.rr }}</td>
+        <td>{% if r.barrier %}<div class="stack">{% if r.barrier.w_tp > 0 %}<i class="tp" style="width:{{ r.barrier.w_tp|w }}%"></i>{% endif %}{% if r.barrier.w_time > 0 %}<i class="time" style="width:{{ r.barrier.w_time|w }}%"></i>{% endif %}{% if r.barrier.w_sl > 0 %}<i class="sl" style="width:{{ r.barrier.w_sl|w }}%"></i>{% endif %}</div><div class="stack-lbl">{% if r.barrier.w_tp > 0 %}<span class="t1" style="width:{{ r.barrier.w_tp|w }}%">{{ r.barrier.tp }}</span>{% endif %}{% if r.barrier.w_time > 0 %}<span style="width:{{ r.barrier.w_time|w }}%">{{ r.barrier.time }}</span>{% endif %}{% if r.barrier.w_sl > 0 %}<span class="t3" style="width:{{ r.barrier.w_sl|w }}%">{{ r.barrier.sl }}</span>{% endif %}</div>{% if r.barrier.h_note %}<div class="stack-h{{ ' warn' if r.barrier.h_missing }}">{{ r.barrier.h_note }}</div>{% endif %}{% else %}<span class="muted">{{ t.no_path }}</span>{% endif %}</td>
+        <td class="r num {{ 'neg' if r.barrier and r.barrier.exp_neg else '' }}">{{ r.barrier.exp if r.barrier else '—' }}</td>
+        <td class="r num kelly">{{ r.kelly.main }}<span class="sub{{ ' lim' if r.kelly.at_limit }}">{{ r.kelly.sub }}</span></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <div class="risk-line"><b>{{ t.risk_h }}</b>{% for x in portfolio.risk_line %}<span>{{ x }}</span>{% endfor %}{% if not portfolio.has_risk %}<span class="chip warn">{{ t.risk_na }}</span>{% endif %}</div>
+  </div>
+
+  <h3 class="sub-h">{{ t.trig_h }}<small>{{ t.trig_sub }}</small></h3>
+  <div class="trig-grid">
+  {% for r in rows %}
+    <div class="trig">
+      <div class="h"><b>{{ r.name }}</b><span class="badge sm b-{{ r.signal.cls }}">{{ r.signal.value }}</span>{% if r.earnings %}<span class="chip ern{{ ' hot' if r.earnings.hot }}">{{ r.earnings.txt }} <span class="ern-d">{{ r.earnings.date }}</span></span>{% endif %}<span class="act">{{ r.action }}</span></div>
+      <div class="tl">{% for tg in r.triggers %}<span class="tg"><span class="no">{{ tg.no }}</span>{{ tg.text }}</span>{% else %}<span class="na">—</span>{% endfor %}{% if r.triggers_hidden %}<span class="muted">{{ r.triggers_more }}</span>{% endif %}</div>
+    </div>
+  {% endfor %}
+  </div>
+
+  <div class="method">
+    {% for p in methodology.core %}<p>{% if loop.first %}<span class="lbl">{{ t.method }}</span>{% endif %}{{ p }}</p>{% endfor %}
+    {% for p in methodology.sel %}<p>{% if loop.first %}<span class="lbl">{{ t.method_sel }}</span>{% endif %}{{ p }}</p>{% endfor %}
+    {% for p in methodology.rsmt %}<p>{% if loop.first %}<span class="lbl">{{ t.method_rsmt }}</span>{% endif %}{{ p }}</p>{% endfor %}
+    {% for p in methodology.extra %}<p>{% if loop.first %}<span class="lbl">{{ t.method_fm }}</span>{% endif %}{{ p }}</p>{% endfor %}
+  </div>
+  <div class="disclaimer">{{ disclaimer }}</div>
+</section>
+
+</body>
+</html>

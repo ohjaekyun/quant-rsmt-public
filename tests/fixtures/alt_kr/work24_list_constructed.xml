@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Constructed from the documented list fields (legacy WorkNet wantedApi / public Work24 clients); no key was
+     available to record a real answer - replace with a recorded response once WORK24_API_KEY exists. -->
+<wantedRoot>
+  <total>3</total>
+  <startPage>1</startPage>
+  <display>100</display>
+  <wanted>
+    <wantedAuthNo>K151612609280001</wantedAuthNo>
+    <company>에스케이하이닉스(주)</company>
+    <busino>1268103725</busino>
+    <indTpNm>반도체 제조업</indTpNm>
+    <title>반도체 공정 엔지니어 채용</title>
+    <salTpNm>연봉</salTpNm>
+    <sal>회사내규에 따름</sal>
+    <region>경기 이천시</region>
+    <holidayTpNm>주5일근무</holidayTpNm>
+    <minEdubg>대졸(4년)</minEdubg>
+    <career>E</career>
+    <regDt>26-09-28</regDt>
+    <closeDt>26-10-12</closeDt>
+    <infoSvc>VALIDATION</infoSvc>
+    <wantedInfoUrl>https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K151612609280001</wantedInfoUrl>
+    <smodifyDtm>202609281030</smodifyDtm>
+    <empTpCd>10</empTpCd>
+    <jobsCd>153101</jobsCd>
+  </wanted>
+  <wanted>
+    <wantedAuthNo>K151612608010002</wantedAuthNo>
+    <company>에스케이하이닉스 주식회사</company>
+    <busino></busino>
+    <title>설비 유지보수 신입 채용</title>
+    <career>N</career>
+    <regDt>26-08-01</regDt>
+    <closeDt>채용시까지 26-12-31</closeDt>
+    <jobsCd>855101</jobsCd>
+  </wanted>
+  <wanted>
+    <wantedAuthNo>K151612609300003</wantedAuthNo>
+    <company>에스케이하이닉스협력사(주)</company>
+    <busino>1268155555</busino>
+    <title>협력사 생산직</title>
+    <career>Z</career>
+    <regDt>26-09-30</regDt>
+    <closeDt>26-10-30</closeDt>
+    <jobsCd>851101</jobsCd>
+  </wanted>
+</wantedRoot>

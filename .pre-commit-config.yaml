@@ -1,0 +1,19 @@
+# 테스트 픽스처(실제 서버 응답 원본)와 라이브 프로브 기록은 바이트 그대로 보존해야 하므로 모든 훅에서 제외
+exclude: ^(tests/fixtures/|docs/sources/)
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.4
+    hooks:
+      # Linter 실행 (자동 수정 적용)
+      - id: ruff
+        args: [--fix]
+      # Formatter 실행
+      - id: ruff-format

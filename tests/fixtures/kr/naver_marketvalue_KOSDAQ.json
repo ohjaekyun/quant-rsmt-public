@@ -1,0 +1,907 @@
+{
+ "totalCount": 1821,
+ "page": 1,
+ "pageSize": 100,
+ "stocks": [
+  {
+   "stockEndType": "stock",
+   "itemCode": "196170",
+   "stockName": "알테오젠",
+   "sosok": "1",
+   "marketValue": "175,183",
+   "marketValueRaw": "17518265949500",
+   "closePriceRaw": "251500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "086520",
+   "stockName": "에코프로",
+   "sosok": "1",
+   "marketValue": "108,757",
+   "marketValueRaw": "10875669775200",
+   "closePriceRaw": "80100"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "247540",
+   "stockName": "에코프로비엠",
+   "sosok": "1",
+   "marketValue": "103,211",
+   "marketValueRaw": "10321110787000",
+   "closePriceRaw": "105500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "036930",
+   "stockName": "주성엔지니어링",
+   "sosok": "1",
+   "marketValue": "97,378",
+   "marketValueRaw": "9737794849500",
+   "closePriceRaw": "209500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "277810",
+   "stockName": "레인보우로보틱스",
+   "sosok": "1",
+   "marketValue": "84,486",
+   "marketValueRaw": "8448638159000",
+   "closePriceRaw": "435500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "240810",
+   "stockName": "원익IPS",
+   "sosok": "1",
+   "marketValue": "64,987",
+   "marketValueRaw": "6498708492400",
+   "closePriceRaw": "132400"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "039030",
+   "stockName": "이오테크닉스",
+   "sosok": "1",
+   "marketValue": "59,072",
+   "marketValueRaw": "5907224225000",
+   "closePriceRaw": "479500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "222800",
+   "stockName": "심텍",
+   "sosok": "1",
+   "marketValue": "57,496",
+   "marketValueRaw": "5749588184400",
+   "closePriceRaw": "149400"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "058470",
+   "stockName": "리노공업",
+   "sosok": "1",
+   "marketValue": "56,854",
+   "marketValueRaw": "5685404010000",
+   "closePriceRaw": "74600"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "403870",
+   "stockName": "HPSP",
+   "sosok": "1",
+   "marketValue": "45,759",
+   "marketValueRaw": "4575880000000",
+   "closePriceRaw": "55600"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "095340",
+   "stockName": "ISC",
+   "sosok": "1",
+   "marketValue": "45,044",
+   "marketValueRaw": "4504374825000",
+   "closePriceRaw": "212500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "108490",
+   "stockName": "로보티즈",
+   "sosok": "1",
+   "marketValue": "44,221",
+   "marketValueRaw": "4422108942000",
+   "closePriceRaw": "301500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "319660",
+   "stockName": "피에스케이",
+   "sosok": "1",
+   "marketValue": "41,770",
+   "marketValueRaw": "4177000158800",
+   "closePriceRaw": "144200"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "028300",
+   "stockName": "HLB",
+   "sosok": "1",
+   "marketValue": "41,358",
+   "marketValueRaw": "4135804824150",
+   "closePriceRaw": "31050"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "440110",
+   "stockName": "파두",
+   "sosok": "1",
+   "marketValue": "40,790",
+   "marketValueRaw": "4079037597800",
+   "closePriceRaw": "81400"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "000250",
+   "stockName": "삼천당제약",
+   "sosok": "1",
+   "marketValue": "39,080",
+   "marketValueRaw": "3908014835200",
+   "closePriceRaw": "166600"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "084370",
+   "stockName": "유진테크",
+   "sosok": "1",
+   "marketValue": "37,078",
+   "marketValueRaw": "3707815595600",
+   "closePriceRaw": "161800"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "031980",
+   "stockName": "피에스케이홀딩스",
+   "sosok": "1",
+   "marketValue": "35,190",
+   "marketValueRaw": "3518982864000",
+   "closePriceRaw": "163200"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "087010",
+   "stockName": "펩트론",
+   "sosok": "1",
+   "marketValue": "33,857",
+   "marketValueRaw": "3385679220000",
+   "closePriceRaw": "145200"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "214450",
+   "stockName": "파마리서치",
+   "sosok": "1",
+   "marketValue": "33,611",
+   "marketValueRaw": "3361051128000",
+   "closePriceRaw": "323500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "131290",
+   "stockName": "티에스이",
+   "sosok": "1",
+   "marketValue": "31,968",
+   "marketValueRaw": "3196752981000",
+   "closePriceRaw": "289000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "064760",
+   "stockName": "티씨케이",
+   "sosok": "1",
+   "marketValue": "31,638",
+   "marketValueRaw": "3163774728000",
+   "closePriceRaw": "283000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "095610",
+   "stockName": "테스",
+   "sosok": "1",
+   "marketValue": "31,344",
+   "marketValueRaw": "3134384000000",
+   "closePriceRaw": "161900"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "067310",
+   "stockName": "하나마이크론",
+   "sosok": "1",
+   "marketValue": "30,719",
+   "marketValueRaw": "3071878147800",
+   "closePriceRaw": "46200"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "141080",
+   "stockName": "리가켐바이오",
+   "sosok": "1",
+   "marketValue": "29,875",
+   "marketValueRaw": "2987467032600",
+   "closePriceRaw": "80700"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "357780",
+   "stockName": "솔브레인",
+   "sosok": "1",
+   "marketValue": "28,625",
+   "marketValueRaw": "2862512288000",
+   "closePriceRaw": "368000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "298380",
+   "stockName": "에이비엘바이오",
+   "sosok": "1",
+   "marketValue": "28,386",
+   "marketValueRaw": "2838564374100",
+   "closePriceRaw": "50700"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "010170",
+   "stockName": "대한광통신",
+   "sosok": "1",
+   "marketValue": "27,552",
+   "marketValueRaw": "2755205895200",
+   "closePriceRaw": "17720"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "310210",
+   "stockName": "보로노이",
+   "sosok": "1",
+   "marketValue": "27,007",
+   "marketValueRaw": "2700710935600",
+   "closePriceRaw": "145700"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "080220",
+   "stockName": "제주반도체",
+   "sosok": "1",
+   "marketValue": "26,865",
+   "marketValueRaw": "2686540974000",
+   "closePriceRaw": "78000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "257720",
+   "stockName": "실리콘투",
+   "sosok": "1",
+   "marketValue": "25,509",
+   "marketValueRaw": "2550916202800",
+   "closePriceRaw": "38900"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "140410",
+   "stockName": "메지온",
+   "sosok": "1",
+   "marketValue": "25,171",
+   "marketValueRaw": "2517101602800",
+   "closePriceRaw": "82200"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "005290",
+   "stockName": "동진쎄미켐",
+   "sosok": "1",
+   "marketValue": "23,880",
+   "marketValueRaw": "2387950403100",
+   "closePriceRaw": "46850"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "319400",
+   "stockName": "현대무벡스",
+   "sosok": "1",
+   "marketValue": "23,500",
+   "marketValueRaw": "2350034422900",
+   "closePriceRaw": "21100"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "145020",
+   "stockName": "휴젤",
+   "sosok": "1",
+   "marketValue": "23,378",
+   "marketValueRaw": "2337834316400",
+   "closePriceRaw": "186800"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "226950",
+   "stockName": "올릭스",
+   "sosok": "1",
+   "marketValue": "23,274",
+   "marketValueRaw": "2327380139700",
+   "closePriceRaw": "102300"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "032820",
+   "stockName": "우리기술",
+   "sosok": "1",
+   "marketValue": "22,427",
+   "marketValueRaw": "2242744263760",
+   "closePriceRaw": "12980"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "058610",
+   "stockName": "에스피지",
+   "sosok": "1",
+   "marketValue": "22,377",
+   "marketValueRaw": "2237695624000",
+   "closePriceRaw": "100900"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "030530",
+   "stockName": "원익홀딩스",
+   "sosok": "1",
+   "marketValue": "21,627",
+   "marketValueRaw": "2162663468000",
+   "closePriceRaw": "28000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "214370",
+   "stockName": "케어젠",
+   "sosok": "1",
+   "marketValue": "21,513",
+   "marketValueRaw": "2151285750000",
+   "closePriceRaw": "40050"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "263750",
+   "stockName": "펄어비스",
+   "sosok": "1",
+   "marketValue": "21,178",
+   "marketValueRaw": "2117839767000",
+   "closePriceRaw": "33700"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "347850",
+   "stockName": "디앤디파마텍",
+   "sosok": "1",
+   "marketValue": "20,537",
+   "marketValueRaw": "2053729838850",
+   "closePriceRaw": "44650"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "178320",
+   "stockName": "서진시스템",
+   "sosok": "1",
+   "marketValue": "20,423",
+   "marketValueRaw": "2042337822450",
+   "closePriceRaw": "32050"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "043260",
+   "stockName": "성호전자",
+   "sosok": "1",
+   "marketValue": "20,183",
+   "marketValueRaw": "2018336934000",
+   "closePriceRaw": "26750"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "214150",
+   "stockName": "클래시스",
+   "sosok": "1",
+   "marketValue": "20,060",
+   "marketValueRaw": "2005996514250",
+   "closePriceRaw": "30750"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "098460",
+   "stockName": "고영",
+   "sosok": "1",
+   "marketValue": "19,882",
+   "marketValueRaw": "1988152808950",
+   "closePriceRaw": "29150"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "041510",
+   "stockName": "에스엠",
+   "sosok": "1",
+   "marketValue": "18,957",
+   "marketValueRaw": "1895680332000",
+   "closePriceRaw": "82800"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "237690",
+   "stockName": "에스티팜",
+   "sosok": "1",
+   "marketValue": "18,956",
+   "marketValueRaw": "1895598730400",
+   "closePriceRaw": "90800"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "083650",
+   "stockName": "비에이치아이",
+   "sosok": "1",
+   "marketValue": "18,721",
+   "marketValueRaw": "1872134687500",
+   "closePriceRaw": "60500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "140860",
+   "stockName": "파크시스템스",
+   "sosok": "1",
+   "marketValue": "18,557",
+   "marketValueRaw": "1855654285000",
+   "closePriceRaw": "265000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "089030",
+   "stockName": "테크윙",
+   "sosok": "1",
+   "marketValue": "18,212",
+   "marketValueRaw": "1821186651750",
+   "closePriceRaw": "49150"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "131970",
+   "stockName": "두산테스나",
+   "sosok": "1",
+   "marketValue": "18,206",
+   "marketValueRaw": "1820625819600",
+   "closePriceRaw": "94200"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "060370",
+   "stockName": "LS마린솔루션",
+   "sosok": "1",
+   "marketValue": "17,500",
+   "marketValueRaw": "1750001609000",
+   "closePriceRaw": "33500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "036540",
+   "stockName": "SFA반도체",
+   "sosok": "1",
+   "marketValue": "17,383",
+   "marketValueRaw": "1738345402710",
+   "closePriceRaw": "10570"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "068760",
+   "stockName": "셀트리온제약",
+   "sosok": "1",
+   "marketValue": "17,361",
+   "marketValueRaw": "1736131181200",
+   "closePriceRaw": "39100"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "089970",
+   "stockName": "브이엠",
+   "sosok": "1",
+   "marketValue": "16,533",
+   "marketValueRaw": "1653320842000",
+   "closePriceRaw": "62800"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "437730",
+   "stockName": "삼현",
+   "sosok": "1",
+   "marketValue": "16,393",
+   "marketValueRaw": "1639281213900",
+   "closePriceRaw": "51700"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "183300",
+   "stockName": "코미코",
+   "sosok": "1",
+   "marketValue": "16,179",
+   "marketValueRaw": "1617943162500",
+   "closePriceRaw": "31500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "007390",
+   "stockName": "네이처셀",
+   "sosok": "1",
+   "marketValue": "15,915",
+   "marketValueRaw": "1591545883200",
+   "closePriceRaw": "24700"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "096530",
+   "stockName": "씨젠",
+   "sosok": "1",
+   "marketValue": "15,820",
+   "marketValueRaw": "1581959507700",
+   "closePriceRaw": "33850"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "218410",
+   "stockName": "RFHIC",
+   "sosok": "1",
+   "marketValue": "15,626",
+   "marketValueRaw": "1562635989600",
+   "closePriceRaw": "58800"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "420770",
+   "stockName": "기가비스",
+   "sosok": "1",
+   "marketValue": "15,604",
+   "marketValueRaw": "1560385809800",
+   "closePriceRaw": "123100"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "323280",
+   "stockName": "태성",
+   "sosok": "1",
+   "marketValue": "14,368",
+   "marketValueRaw": "1436811959000",
+   "closePriceRaw": "47050"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "204270",
+   "stockName": "제이앤티씨",
+   "sosok": "1",
+   "marketValue": "13,884",
+   "marketValueRaw": "1388363184000",
+   "closePriceRaw": "24000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "0009K0",
+   "stockName": "에임드바이오",
+   "sosok": "1",
+   "marketValue": "13,778",
+   "marketValueRaw": "1377844413200",
+   "closePriceRaw": "21200"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "039200",
+   "stockName": "오스코텍",
+   "sosok": "1",
+   "marketValue": "13,696",
+   "marketValueRaw": "1369642700800",
+   "closePriceRaw": "35800"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "078600",
+   "stockName": "대주전자재료",
+   "sosok": "1",
+   "marketValue": "13,631",
+   "marketValueRaw": "1363119178400",
+   "closePriceRaw": "86800"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "241710",
+   "stockName": "코스메카코리아",
+   "sosok": "1",
+   "marketValue": "13,574",
+   "marketValueRaw": "1357428000000",
+   "closePriceRaw": "127100"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "950160",
+   "stockName": "코오롱티슈진",
+   "sosok": "1",
+   "marketValue": "13,502",
+   "marketValueRaw": "1350175842400",
+   "closePriceRaw": "15890"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "035900",
+   "stockName": "JYP Ent.",
+   "sosok": "1",
+   "marketValue": "13,431",
+   "marketValueRaw": "1343128197600",
+   "closePriceRaw": "37800"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "082920",
+   "stockName": "비츠로셀",
+   "sosok": "1",
+   "marketValue": "12,684",
+   "marketValueRaw": "1268419303700",
+   "closePriceRaw": "28100"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "290650",
+   "stockName": "엘앤씨바이오",
+   "sosok": "1",
+   "marketValue": "12,676",
+   "marketValueRaw": "1267576088000",
+   "closePriceRaw": "47000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "003380",
+   "stockName": "하림지주",
+   "sosok": "1",
+   "marketValue": "12,421",
+   "marketValueRaw": "1242142336890",
+   "closePriceRaw": "11090"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "347700",
+   "stockName": "스피어",
+   "sosok": "1",
+   "marketValue": "12,089",
+   "marketValueRaw": "1208879438900",
+   "closePriceRaw": "23450"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "950260",
+   "stockName": "인제니아테라퓨틱스(Reg.S)",
+   "sosok": "1",
+   "marketValue": "11,966",
+   "marketValueRaw": "1196559489400",
+   "closePriceRaw": "24200"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "127120",
+   "stockName": "제이에스링크",
+   "sosok": "1",
+   "marketValue": "11,901",
+   "marketValueRaw": "1190134080000",
+   "closePriceRaw": "32000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "232140",
+   "stockName": "와이씨",
+   "sosok": "1",
+   "marketValue": "11,708",
+   "marketValueRaw": "1170787144500",
+   "closePriceRaw": "14270"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "166090",
+   "stockName": "하나머티리얼즈",
+   "sosok": "1",
+   "marketValue": "11,649",
+   "marketValueRaw": "1164904998600",
+   "closePriceRaw": "58900"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "195940",
+   "stockName": "HK이노엔",
+   "sosok": "1",
+   "marketValue": "11,020",
+   "marketValueRaw": "1102032759900",
+   "closePriceRaw": "38900"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "252990",
+   "stockName": "샘씨엔에스",
+   "sosok": "1",
+   "marketValue": "10,905",
+   "marketValueRaw": "1090545969790",
+   "closePriceRaw": "18110"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "356860",
+   "stockName": "티엘비",
+   "sosok": "1",
+   "marketValue": "10,606",
+   "marketValueRaw": "1060631385000",
+   "closePriceRaw": "44750"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "056190",
+   "stockName": "SFA",
+   "sosok": "1",
+   "marketValue": "10,108",
+   "marketValueRaw": "1010831594000",
+   "closePriceRaw": "28150"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "086450",
+   "stockName": "동국제약",
+   "sosok": "1",
+   "marketValue": "9,702",
+   "marketValueRaw": "970192509000",
+   "closePriceRaw": "21450"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "458870",
+   "stockName": "씨어스",
+   "sosok": "1",
+   "marketValue": "9,663",
+   "marketValueRaw": "966303122400",
+   "closePriceRaw": "25200"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "293490",
+   "stockName": "카카오게임즈",
+   "sosok": "1",
+   "marketValue": "9,639",
+   "marketValueRaw": "963909742950",
+   "closePriceRaw": "9030"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "100790",
+   "stockName": "미래에셋벤처투자",
+   "sosok": "1",
+   "marketValue": "9,482",
+   "marketValueRaw": "948202317300",
+   "closePriceRaw": "17850"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "101490",
+   "stockName": "에스앤에스텍",
+   "sosok": "1",
+   "marketValue": "9,462",
+   "marketValueRaw": "946201883650",
+   "closePriceRaw": "44350"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "119850",
+   "stockName": "지엔씨에너지",
+   "sosok": "1",
+   "marketValue": "9,228",
+   "marketValueRaw": "922783794900",
+   "closePriceRaw": "56100"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "417200",
+   "stockName": "LS머트리얼즈",
+   "sosok": "1",
+   "marketValue": "9,180",
+   "marketValueRaw": "918046582630",
+   "closePriceRaw": "13570"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "160190",
+   "stockName": "하이젠알앤엠",
+   "sosok": "1",
+   "marketValue": "9,097",
+   "marketValueRaw": "909651600000",
+   "closePriceRaw": "29450"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "083450",
+   "stockName": "GST",
+   "sosok": "1",
+   "marketValue": "9,086",
+   "marketValueRaw": "908599000000",
+   "closePriceRaw": "49300"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "388210",
+   "stockName": "씨엠티엑스",
+   "sosok": "1",
+   "marketValue": "8,631",
+   "marketValueRaw": "863106757200",
+   "closePriceRaw": "89400"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "065350",
+   "stockName": "신성델타테크",
+   "sosok": "1",
+   "marketValue": "8,616",
+   "marketValueRaw": "861621769800",
+   "closePriceRaw": "31350"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "099320",
+   "stockName": "쎄트렉아이",
+   "sosok": "1",
+   "marketValue": "8,564",
+   "marketValueRaw": "856389939600",
+   "closePriceRaw": "78200"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "035760",
+   "stockName": "CJ ENM",
+   "sosok": "1",
+   "marketValue": "8,530",
+   "marketValueRaw": "853044090600",
+   "closePriceRaw": "38900"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "036830",
+   "stockName": "솔브레인홀딩스",
+   "sosok": "1",
+   "marketValue": "8,509",
+   "marketValueRaw": "850915211500",
+   "closePriceRaw": "41500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "445680",
+   "stockName": "큐리옥스바이오시스템즈",
+   "sosok": "1",
+   "marketValue": "8,449",
+   "marketValueRaw": "844871485950",
+   "closePriceRaw": "49050"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "115180",
+   "stockName": "큐리언트",
+   "sosok": "1",
+   "marketValue": "8,445",
+   "marketValueRaw": "844518397500",
+   "closePriceRaw": "22500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "327260",
+   "stockName": "RF머트리얼즈",
+   "sosok": "1",
+   "marketValue": "8,401",
+   "marketValueRaw": "840078781300",
+   "closePriceRaw": "46700"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "031330",
+   "stockName": "에스에이엠티",
+   "sosok": "1",
+   "marketValue": "8,250",
+   "marketValueRaw": "824959302750",
+   "closePriceRaw": "8250"
+  }
+ ]
+}

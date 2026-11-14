@@ -1,0 +1,41 @@
+name: CI (Python Lint & Test)
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install System Korean Fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-nanum
+          sudo fc-cache -fv
+
+      - name: Install Python Dependencies & Playwright
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+          playwright install chromium --with-deps
+
+      - name: Lint and Format check with Ruff
+        run: |
+          ruff check .
+          ruff format --check .
+
+      - name: Run pytest
+        run: |
+          pytest -m "not live"

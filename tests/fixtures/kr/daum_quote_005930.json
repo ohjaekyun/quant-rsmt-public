@@ -1,0 +1,20 @@
+{
+ "symbolCode": "A005930",
+ "code": "KR7005930003",
+ "name": "삼성전자",
+ "date": "2026-09-23",
+ "tradeDate": "20260923",
+ "tradeTime": "195900",
+ "tradePrice": 286500.0,
+ "regularTradePrice": 285500.0,
+ "basePrice": 276500.0,
+ "changePrice": 10000.0,
+ "marketStatus": "CLOSING",
+ "market": "KOSPI",
+ "securityGroup": "STOCK",
+ "wicsSectorName": "반도체와반도체장비",
+ "sectorPer": 34.23608,
+ "per": 41.86,
+ "eps": 6605.0,
+ "marketCap": 1674958821192000
+}

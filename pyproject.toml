@@ -1,0 +1,92 @@
+[tool.ruff]
+# 파이썬 3.12/3.13 기준 설정
+target-version = "py312"
+line-length = 120
+# src 레이아웃 명시: 없으면 ruff 버전(pre-commit v0.4.4 vs CI 최신)마다 quantcio 를 1st/3rd-party 로 다르게 분류해 I001 이 충돌
+src = ["src"]
+# 노트북(.ipynb) 및 데이터/모델 디렉터리 제외
+# - "./" 로 루트에 고정: 그냥 "data" 는 src/quantcio/data 패키지까지 제외해 버림
+# - docs/sources 는 라이브 프로브 원본(검증 기록용 참조 코드)이라 제외
+extend-exclude = ["./playbook", "./data", "./models", ".venv", "docs/sources"]
+
+[tool.ruff.lint]
+# 기본 규칙(E, F) 외에 ISort(I), 유효하지 않은 이름(N), 최신 문법 변환(UP) 추가
+select = ["E", "F", "I", "N", "UP"]
+ignore = []
+
+[tool.ruff.lint.pep8-naming]
+# 수학·통계 표기 관례(설계행렬 X, 스코어행렬 S, meat 행렬 B, SVD U/Vt, 보유기간 H 등)만 명시적으로 허용
+extend-ignore-names = [
+    "X", "X_*", "Xa", "Xt", "Z", "Zt", "U", "Vt", "S", "S_*", "B", "Binv", "P", "G", "T", "A", "W", "R", "H",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quantcio"
+version = "0.1.0"
+description = "Quant + LLM trading-signal report generator for CIO decision support (KR + US equities)"
+requires-python = ">=3.12"  # PEP 695 제네릭, datetime.UTC 사용
+dependencies = [
+    "anthropic>=1.8",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "pandas>=2.2",
+    "numpy>=1.26",
+    "scikit-learn>=1.5",
+    "arch>=7.0",
+    "yfinance>=1.0",
+    "finance-datareader>=0.9",
+    "pykrx>=1.0",
+    "requests>=2.32",
+    "beautifulsoup4>=4.12",
+    "lxml>=5.0",
+    "feedparser>=6.0",
+    "jinja2>=3.1",
+    "playwright>=1.45",
+    "pypdf>=4.0",
+    "matplotlib>=3.8",
+    "typer>=0.12",
+    "rich>=13.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0",
+    "tenacity>=8.2",
+    "pyarrow>=15.0",
+    "lightgbm>=4.0",
+    "xgboost>=2.0",   # selection-model candidates xgb_* (docs/MODELING.md)
+    "catboost>=1.2",  # cat_clf / cat_rank (the served US model is cat_rank)
+    "optuna>=3.6",    # Bayesian (TPE) tuning of the *_bo candidates (docs/MODELING.md 82)
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-mock>=3.12",
+    "pre-commit>=3.7.0",
+    "ruff>=0.4.4",
+]
+research = [
+    "torch>=2.2",  # scripts/soft_forest_study.py only (docs/MODELING.md 60); never imported by src/quantcio
+]
+
+[project.scripts]
+quantcio = "quantcio.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+quantcio = ["report/templates/*.j2", "report/templates/*.css"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = [
+    "live: hits real network data sources (deselect with -m 'not live')",
+]

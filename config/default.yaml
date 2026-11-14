@@ -1,0 +1,225 @@
+# QuantCIO default configuration. Override with --config <file> (deep-merged) or env vars.
+# All weights inside a block are normalised to sum to 1 at load time.
+
+horizon_days: 20          # forecast / holding horizon in trading days (~1 month)
+history_years: 7          # price history to load for factors + RSMT-Q training
+
+data:
+  cache_dir: .cache/quantcio
+  price_ttl_hours: 12
+  text_ttl_hours: 6
+  news_lookback_days: 21
+  filing_lookback_days: 120
+  max_news_items: 30
+  max_filings: 6
+  max_filing_chars: 18000   # per filing text passed to the LLM (head+tail preserved)
+  sec_user_agent: ${SEC_USER_AGENT}   # "Org Name contact@domain" - required by SEC EDGAR
+
+factors:
+  weights:
+    momentum: 0.30
+    value: 0.25
+    volatility: 0.15
+    quality: 0.15
+    trend: 0.15
+
+rsmt:                        # RSMT-Q: score-based model tree over return-distribution parameters (MOB)
+  enabled: true
+  feature_set: v1            # keep the partition set SMALL - Bonferroni multiplies p by m
+  partition_features:        # regime variables tested for parameter instability (m = 9)
+    - vol_ratio_20_120
+    - vol_pct_3y
+    - ret_1m
+    - dist_ma200
+    - rsi14
+    - dd_250
+    - volume_z20
+    - mkt_ret_60
+    - mkt_vol_60
+  offset_mu_feature: xs_mom_z     # gamma offset on mu (cross-sectional 12-1 momentum z), NOT a split variable
+  offset_sigma_feature: ewma_vol  # eta offset on log sigma (EWMA vol, lambda 0.94), NOT a split variable
+  sample_step: 20            # sample every h days per ticker -> non-overlapping forward windows
+  trim: 0.10                 # sup-LM trimming (Andrews 1993); part of the null-distribution cache key
+  null_sims: 20000           # Monte Carlo draws of the Brownian-bridge sup-LM null (cached on disk)
+  beta_shrink: 0.33          # Blume shrink toward 1: beta_s = (1-k)*beta + k
+  mu_shrink_k: 200           # leaf mu shrunk toward parent: (n*mu + k*mu_parent)/(n + k)
+  n_paths: 20000             # path simulation size (one matrix for every derived probability)
+  cv_folds: 4                # expanding-window CV folds (by date) for metrics, edge delta and skill gate
+  collapse_min_unique_ratio: 0.5   # health check: unique (mu,sigma) pairs / tickers on the last date
+  min_leaf_dates: 12         # each child must span >= 12 distinct sample dates (rows on one date share a market shock)
+  boot_sims: 999             # date-cluster multiplier bootstrap draws for the split test
+  skill_min_auc_gain: 0.01   # DIRECTION gate: CV AUC gain over the baseline twin
+  skill_require_date_ci: true  # and the date-block bootstrap 5% bound of the AUC gain must be > 0
+  robust_cv_folds: [3, 4, 5]   # skill must hold for a MAJORITY of these fold layouts (single-layout passes are noise)
+  market_mu_prior_annual: 0.06 # long-run equity drift prior for the market component mu_m
+  market_mu_shrink: 0.8        # mu_m = (1-s)*time-decayed historical mean + s*prior (never extrapolate a rally)
+  # RSMT-Q = risk / distribution engine (docs/RSMT.md): served skill_ok = the distribution gate; the direction (AUC)
+  # gate stays reported as direction_skill_ok (the directional ML pillar reads it)
+  skill_metric: distribution   # distribution (CRPS gain bound > 0 + bands) | direction (the AUC gate above)
+  skill_cover80_band: [0.75, 0.85]   # distribution gate: 80% band coverage
+  skill_exc95_band: [0.02, 0.08]     # distribution gate: VaR95 exceedance rate
+  # model switches - defaults = winners of the pre-declared comparison 2026-09-29 (reports/rsmt/compare_<M>.md):
+  # KR V6 (overlap + Simes + standardised target + leaf gamma), US V1 (overlap only; V6/V7 tied within 0.1%)
+  overlap_step: 1            # a training row EVERY session (overlapping labels, 20-session block clusters); 0 = off
+                             # (2026-10-01, docs/RSMT.md section 8: every business day of the longest history)
+  multiple_testing: bonferroni  # bonferroni | simes | pca (split test over the partition variables)
+  pca_components: 3          # K principal components when multiple_testing = pca
+  target_scale: none         # none | ewma (split on e / (EWMA vol * sqrt(h/252)), served back in returns)
+  gamma_mode: global         # global | leaf (leaf momentum gamma shrunk toward the parent)
+  gamma_shrink_k: 50         # leaf gamma prior weight, in independent blocks
+  sigma_terms: []            # sigma equation extra terms (per market below): log sigma += sum theta_j * term_j
+  model_max_age_days: 7      # the universe-fitted market model is reused this long; every run re-serves fresh features
+  boot_block_horizons: 3     # split-test bootstrap clusters = 3 horizons (60 sessions): overlapping labels correlate
+                             # across neighbouring 20-session blocks (h-blocks: false-split rate ~10% at a 5% test)
+  markets:                   # per-market config (like baseball vs soccer); switch overrides: null / absent = global
+    KR:
+      universe_size: 60
+      max_depth: 4
+      min_leaf: 150
+      alpha: 0.10
+      half_life_days: 1260     # 5 years (docs/RSMT.md section 8; 504 made the longer history count for little)
+      history_start: "1995-09-01"  # first marcap year (KRX daily snapshots from 1995; replica benchmark before 2014-07)
+      sigma_terms: [har_5, har_66, har_252]   # HAR: log(realised vol 5 / 66 / 252 sessions / EWMA vol)
+      nu_min: 4.5            # tail floor - tune on CRPS / 80% coverage, NOT on direction AUC
+      nu_max: 30
+      multiple_testing: simes   # KR winner V6 (docs/RSMT.md section 5)
+      target_scale: ewma
+      gamma_mode: leaf
+    US:
+      universe_size: 60
+      max_depth: 4
+      min_leaf: 150
+      alpha: 0.05
+      half_life_days: 1260
+      history_start: "2009-08-31"  # validated prices (SEC FTD) and XBRL share counts start mid-2009
+      sigma_terms: [cal_s1, cal_c1, cal_s4, cal_c4]   # annual + quarterly harmonics (US earnings season)
+      nu_min: 4.5
+      nu_max: 30
+
+fusion:
+  weights:                   # pillar weights for the composite score (each pillar in [-1, 1])
+    factor: 0.35
+    ml: 0.25
+    llm: 0.40
+  thresholds:                # composite score cut-offs
+    strong_buy: 0.45
+    buy: 0.15
+    sell: -0.15              # composite <= sell -> Sell; between sell and buy -> Hold
+  strong_buy_min_confidence: 65   # Strong Buy requires this confidence, else downgraded to Buy
+  target_horizon_days: 60    # target price horizon (~3 months); components are scaled to this horizon
+  barrier_guard_margin: 0.15 # downgrade Buy+ when P(SL first) > P(TP first) + margin (simulated over target_horizon_days)
+  min_buy_upside: 0.02       # Buy+ requires target upside >= 2%, else capped at Hold
+  max_sell_upside: 0.05      # Sell with target upside > +5% is lifted to Hold (conflicting evidence)
+  factor_pillar_asymmetry: auto  # auto: shrink (x0.35) the factor-model pillar side the backtest side test finds weak
+                                 # (pre-holdout |t(b+ - b-)| >= 2, docs/BACKTEST_MACRO.md 3.3); off = always symmetric
+  target_price_blend:        # weights for target price components (renormalised over available ones)
+    ml: 0.40
+    analyst: 0.35
+    valuation: 0.25
+
+risk:
+  atr_period: 14
+  stop_atr_mult: 2.0
+  min_stop_pct: 0.04
+  max_stop_pct: 0.15
+  min_reward_risk: 1.5       # take-profit at least this multiple of stop distance
+  target_portfolio_vol: 0.15 # annualised, used for inverse-vol sizing
+  max_weight: 0.12           # per-name cap
+  min_weight: 0.02           # below this the position is dropped to 0
+  max_gross: 0.95            # total invested; remainder is cash
+  kelly_cap: 0.25            # fractional-Kelly cap on the Kelly fraction
+
+llm:
+  model: claude-opus-5
+  effort:
+    news: low
+    filings: medium
+    critic: high
+  max_tokens:
+    news: 8000
+    filings: 12000
+    critic: 8000
+  concurrency: 4
+  news_half_life_days: 7     # time-decay half-life for aggregating article sentiment
+  min_relevance: 0.3         # articles below this relevance are excluded from the score
+  server_fallbacks: true     # beta server-side-fallback-2026-07-01, fallbacks="default"
+  web_research: false        # optional Claude web_search for earnings-call coverage (extra cost)
+  response_cache: true       # cache LLM results keyed by input hash (reproducible reruns)
+  # input budgets (token cost): what is sent to the model; data.max_* above stay the fetch limits
+  news_max_articles: 20      # after merging near-duplicate stories
+  news_dedupe_similarity: 0.55   # title bigram Jaccard for "same story" (>= 1 turns merging off)
+  filing_max_tokens: 3000    # per filing (estimated tokens): head + paragraphs with figures / key terms
+  filings_total_tokens: 10000  # all filings of one ticker (estimated tokens)
+  critic_max_news: 6         # articles re-shown to the critic (most relevant / strongest first)
+  critic_max_filings: 3      # filings re-shown to the critic (those behind high/critical risks first)
+  critic_filing_tokens: 1000
+
+report:
+  language: ko
+  max_pages: 3
+  auto_extend: true          # > compact_max_names names: full content on more pages instead of compacting
+  compact_max_names: 8       # up to this many names the report is compacted to max_pages (one-minute format)
+  max_pages_extended: 16     # page cap of the extended (full-content) format
+  output_dir: reports
+
+pit:                         # point-in-time universes & fundamentals (removes survivorship / look-ahead bias)
+  enabled: true
+  universe_mode: pit         # RSMT-Q training rows: members of the PIT universe at each date (pit) or today's list (current)
+  rebalance: month_end
+  kr:
+    start_year: 2013         # FinanceData/marcap daily KRX snapshots (incl. later-delisted stocks)
+    rank_by: marcap          # marcap | marcap_mean60
+    exclude_admin: true
+    min_sessions: 120
+  us:
+    index: sp500             # S&P 500 PIT membership (fja05680 + Wikipedia), keyed by SEC CIK
+    ftd_fill: true           # SEC fails-to-deliver marks for delisting/terminal prices
+  fundamentals:
+    kr_fallback_lag_days_quarter: 60   # receipt date unknown -> period end + 60/120 days (+45/+90 measured too early)
+    kr_fallback_lag_days_annual: 120
+    max_staleness_days: 200
+
+holdout:                     # see docs/HOLDOUT.md
+  registry_path: holdout/registry.json
+  ledger_dir: holdout/ledger
+  min_dates_for_verdict: 12
+  bh_q: 0.10
+  record_reports: true
+  target_auc: 0.55           # goal for the within-date AUC (above-median label); reported, not a test
+  xsh_kr_rank_band: [601, 800]  # KR XSH names: PIT market-cap ranks outside the tuned top 200 and the 201-400 / 401-600
+                                # bands already looked at (XSH-KR-20260927, XSH-KR-20261003); stored in each entry at registration
+
+modeling:                    # stock-selection model universe (docs/MODELING.md 80.8, user decision 2026-10-25)
+  kr_universe_n: 400         # KR top 400 by market cap; the factor backtest below keeps its own 200
+  kr_cost_bps: 50.0          # round trip for the v4 primary metric (ranks 201-400 trade wider)
+
+backtest:                    # PIT factor backtest + walk-forward multi-factor model (docs/BACKTEST_MACRO.md)
+  kr_universe_n: 200
+  us_universe_n: 500
+  kr_start: "2016-01-01"
+  us_start: "2012-01-01"
+  quantiles: 5
+  cost_bps_kr: 30.0          # round trip incl. securities transaction tax
+  cost_bps_us: 10.0
+  sector_neutral: true
+  min_names_per_sector: 5
+  momentum_windows: [63, 126]   # 3M, 6M
+  volume_windows: [20, 120]     # volume trend = log(ADV20/ADV120)
+  factor_pillar_blend: 0.5      # model score share inside the factor pillar
+  model:
+    method: auto                # auto = pre-declared candidate comparison + selection rule (BACKTEST_MACRO.md 3.1)
+    lookback_months: 36
+    min_months: 24
+    shrink_to_equal: 0.5
+    skill_min_ic_t: 2.0
+    holdout_months: 24          # last OOS months never used to pick the candidate
+
+macro:                       # global / US / Korea macro regime (dashboard + gross-exposure overlay)
+  enabled: true
+  lookback_years: 10
+  z_window_years: 3
+  ttl_hours: 12
+  overlay: true
+  overlay_min_mult: 0.6
+  risk_off_threshold: -0.25
+  risk_on_threshold: 0.25

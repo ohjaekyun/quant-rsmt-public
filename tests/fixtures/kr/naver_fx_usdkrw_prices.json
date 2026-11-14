@@ -1,0 +1,77 @@
+[
+ {
+  "localTradedAt": "2026-09-23",
+  "closePrice": "1,366.70",
+  "fluctuations": "11.20",
+  "fluctuationsRatio": "0.83",
+  "fluctuationsType": {
+   "code": "2",
+   "text": "상승",
+   "name": "RISING"
+  },
+  "cashBuyValue": "1,390.61",
+  "cashSellValue": "1,342.79",
+  "sendValue": "1,380.0",
+  "receiveValue": "1,353.4"
+ },
+ {
+  "localTradedAt": "2026-09-22",
+  "closePrice": "1,355.50",
+  "fluctuations": "-19.50",
+  "fluctuationsRatio": "-1.42",
+  "fluctuationsType": {
+   "code": "5",
+   "text": "하락",
+   "name": "FALLING"
+  },
+  "cashBuyValue": "1,379.22",
+  "cashSellValue": "1,331.78",
+  "sendValue": "1,368.7",
+  "receiveValue": "1,342.3"
+ },
+ {
+  "localTradedAt": "2026-09-21",
+  "closePrice": "1,375.00",
+  "fluctuations": "-13.00",
+  "fluctuationsRatio": "-0.94",
+  "fluctuationsType": {
+   "code": "5",
+   "text": "하락",
+   "name": "FALLING"
+  },
+  "cashBuyValue": "1,399.06",
+  "cashSellValue": "1,350.94",
+  "sendValue": "1,388.4",
+  "receiveValue": "1,361.6"
+ },
+ {
+  "localTradedAt": "2026-09-18",
+  "closePrice": "1,388.00",
+  "fluctuations": "7.00",
+  "fluctuationsRatio": "0.51",
+  "fluctuationsType": {
+   "code": "2",
+   "text": "상승",
+   "name": "RISING"
+  },
+  "cashBuyValue": "1,412.29",
+  "cashSellValue": "1,363.71",
+  "sendValue": "1,401.6",
+  "receiveValue": "1,374.4"
+ },
+ {
+  "localTradedAt": "2026-09-17",
+  "closePrice": "1,381.00",
+  "fluctuations": "3.50",
+  "fluctuationsRatio": "0.25",
+  "fluctuationsType": {
+   "code": "2",
+   "text": "상승",
+   "name": "RISING"
+  },
+  "cashBuyValue": "1,405.16",
+  "cashSellValue": "1,356.84",
+  "sendValue": "1,394.5",
+  "receiveValue": "1,367.5"
+ }
+]

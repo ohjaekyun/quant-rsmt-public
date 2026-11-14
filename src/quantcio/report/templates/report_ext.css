@@ -1,0 +1,413 @@
+/* QuantCIO report - extension stylesheet (inlined after report.css only when a report uses one of these blocks:
+   the page-1 macro strip, the Module 2 factor-model / backtest tables, or English output). Keeping it separate
+   leaves the Korean output of reports without these blocks byte-identical. */
+
+/* ------------------------------------------------------------------ English */
+body.lang-en {
+   /* Latin text first; Hangul (Korean company names from the data sources) falls back to the Korean fonts */
+   font-family: "Helvetica Neue", "Arial", "Apple SD Gothic Neo", "Noto Sans KR", "Noto Sans CJK KR", "NanumGothic",
+      sans-serif;
+   word-break: normal;
+}
+
+body.lang-en .badge {
+   letter-spacing: 0;
+}
+
+/* "Factor" needs a wider label slot than "팩터" in the Module 1 pillar mini-bars */
+body.lang-en .pl {
+   grid-template-columns: 25px 1fr 23px;
+}
+
+body.lang-en .pl > span:first-child {
+   white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ page-1 macro strip */
+.macro-strip {
+   display: flex;
+   align-items: stretch;
+   gap: 3px;
+   margin: 4px 0 0;
+}
+
+.macro-strip .chips-label {
+   flex: 0 0 auto;
+   align-self: center;
+   line-height: 1.2;
+}
+
+.macro-strip .m-asof {
+   display: block;
+   font-size: 6pt;
+}
+
+.mcell {
+   flex: 1 1 0;
+   min-width: 0;
+   border: 1px solid var(--rule);
+   border-left: 3px solid var(--ink-3);
+   border-radius: 3px;
+   background: var(--band);
+   padding: 1px 5px 2px;
+   font-size: 6.8pt;
+   line-height: 1.3;
+}
+
+.mcell.m-on {
+   border-left-color: var(--pos);
+}
+
+.mcell.m-off {
+   border-left-color: var(--neg);
+}
+
+.mcell.m-na {
+   border-left-color: var(--warn-bd);
+   background: var(--warn-bg);
+}
+
+.mh {
+   display: flex;
+   align-items: baseline;
+   flex-wrap: wrap;
+   gap: 0 5px;
+}
+
+.mh b {
+   color: var(--ink);
+   font-size: 7.2pt;
+}
+
+.mlab {
+   font-weight: 700;
+   color: var(--ink-2);
+}
+
+.m-on .mlab {
+   color: var(--pos);
+}
+
+.m-off .mlab {
+   color: var(--neg);
+}
+
+.m-na .mlab {
+   color: var(--warn-ink);
+}
+
+.msc {
+   color: var(--ink);
+   font-weight: 600;
+}
+
+.mmult,
+.mflag {
+   margin-left: auto;
+   font-size: 6.3pt;
+   color: var(--warn-ink);
+   background: var(--warn-bg);
+   border: 1px solid var(--warn-bd);
+   border-radius: 3px;
+   padding: 0 3px;
+   white-space: nowrap;
+}
+
+.mflag + .mflag,
+.mmult + .mflag {
+   margin-left: 0;
+}
+
+.mi {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0 7px;
+   color: var(--ink-2);
+   font-size: 6.4pt;
+}
+
+.mind {
+   white-space: nowrap;
+}
+
+.mind b {
+   color: var(--ink);
+   font-weight: 600;
+}
+
+.mind .z {
+   color: var(--ink-3);
+}
+
+.mind .z.neg {
+   color: var(--neg);
+}
+
+/* ------------------------------------------------------------------ Module 2: factor model */
+table.fmodel th {
+   font-size: 6.4pt;
+   padding: 1px 3px;
+}
+
+table.fmodel td {
+   padding: 1px 3px;
+   font-size: 7.1pt;
+   line-height: 1.25;
+}
+
+table.fmodel td.name b {
+   font-size: 7.6pt;
+}
+
+table.fmodel td.sector {
+   font-size: 6.7pt;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+table.fmodel td.nowrap {
+   white-space: nowrap;
+}
+
+table.fmodel .skill {
+   font-size: 6pt;
+   padding: 0 3px;
+}
+
+table.fmodel .fcell.pct {
+   grid-template-columns: 1fr 22px;
+}
+
+.fm-mark {
+   color: var(--accent);
+   font-size: 6pt;
+   margin-left: 1px;
+}
+
+.fm-foot {
+   color: var(--ink-3);
+   font-size: 6.3pt;
+   line-height: 1.3;
+   margin-top: 1px;
+}
+
+.fm-foot sup {
+   color: var(--accent);
+}
+
+/* ------------------------------------------------------------------ Module 2: backtest summary */
+.bt-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 6px;
+}
+
+.bt-grid.one {
+   grid-template-columns: 1fr;
+}
+
+.bt {
+   min-width: 0;
+   border: 1px solid var(--rule);
+   border-radius: 3px;
+   padding: 2px 5px 3px;
+   break-inside: avoid;
+}
+
+.bt-h {
+   display: flex;
+   align-items: baseline;
+   flex-wrap: wrap;
+   gap: 0 6px;
+   font-size: 7.3pt;
+}
+
+.bt-meta {
+   color: var(--ink-3);
+   font-size: 6.3pt;
+}
+
+table.bt-t th {
+   font-size: 6.4pt;
+   padding: 1px 3px;
+}
+
+table.bt-t td {
+   font-size: 6.9pt;
+   padding: 1px 3px;
+   line-height: 1.25;
+}
+
+table.bt-t tr.bt-model td {
+   border-top: 1px solid var(--ink-3);
+   border-bottom: none;
+}
+
+table.bt-t .skill {
+   font-size: 6pt;
+   padding: 0 3px;
+}
+
+.bt-bad {
+   font-size: 6pt;
+   color: var(--warn-ink);
+}
+
+/* ------------------------------------------------------------------ Module 2: 20-quantile ordering model (93) */
+.ord {
+   margin-top: 1px;
+}
+
+.ord-row {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: baseline;
+   gap: 2px 3px;
+   margin: 1px 0;
+}
+
+.ord-row .lbl {
+   color: var(--ink-3);
+   font-size: 6.4pt;
+   margin-right: 2px;
+   white-space: nowrap;
+}
+
+.ord .chip {
+   font-size: 6.4pt;
+   padding: 0 4px;
+}
+
+.ord .chip .t {
+   color: var(--ink-3);
+}
+
+.ord .chip.top {
+   background: var(--accent-soft);
+   border-color: var(--accent);
+}
+
+.ord .chip .num.hi {
+   color: var(--accent);
+   font-weight: 700;
+}
+
+.ord .chip.both {
+   border-style: double;
+   border-width: 3px;
+}
+
+/* docs/MODELING.md 96: the reference-model section at the top of Module 2 and the Module 1 row tag */
+.refm {
+   margin: 2px 0 6px;
+   padding: 4px 6px 5px;
+   border: 1px solid var(--accent);
+   border-radius: 4px;
+   background: #f7faff;
+}
+
+.refm h3.sub-h {
+   margin-top: 0;
+}
+
+.ord-head {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: baseline;
+   gap: 2px 8px;
+   font-size: 7.8pt;
+   margin: 1px 0 3px;
+}
+
+.ord-period {
+   color: var(--ink-3);
+   font-size: 6.6pt;
+}
+
+.ord-tiles {
+   display: grid;
+   grid-template-columns: repeat(5, 1fr);
+   gap: 4px;
+   margin-bottom: 4px;
+}
+
+.ord-tiles .tile {
+   background: var(--paper);
+   min-height: 30px;
+}
+
+.ord-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 6px;
+   margin-bottom: 3px;
+}
+
+table.ord-t th {
+   font-size: 6.4pt;
+   color: var(--ink-3);
+   font-weight: 600;
+   border-bottom: 1px solid var(--rule);
+   padding: 1px 3px;
+   text-align: left;
+}
+
+table.ord-t td {
+   font-size: 7pt;
+   padding: 1px 3px;
+   border-bottom: 1px solid var(--rule-2);
+   background: var(--paper);
+}
+
+table.ord-t th.r,
+table.ord-t td.r {
+   text-align: right;
+}
+
+table.ord-t th.c,
+table.ord-t td.c {
+   text-align: center;
+}
+
+table.ord-t td.name .t,
+table.ord-t td.sector {
+   color: var(--ink-3);
+}
+
+table.ord-t td.name {
+   white-space: nowrap;
+}
+
+table.ord-t tr.mine td {
+   background: var(--accent-soft);
+}
+
+.ord-warn {
+   font-size: 6.6pt;
+   color: var(--warn-ink);
+   background: var(--warn-bg);
+   border-left: 3px solid var(--warn-bd);
+   padding: 2px 5px;
+   margin: 2px 0 3px;
+}
+
+.chip.ref {
+   margin: 0 4px 0 3px;
+   border-color: var(--accent);
+   color: var(--accent);
+   background: var(--paper);
+}
+
+.chip.ref.avoid,
+.ord .chip.avoid {
+   border-color: var(--warn-bd);
+   color: var(--warn-ink);
+   background: var(--warn-bg);
+}
+
+.chip.ref.top {
+   background: var(--accent);
+   color: var(--paper);
+   font-weight: 700;
+}

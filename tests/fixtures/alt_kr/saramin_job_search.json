@@ -1,0 +1,293 @@
+{
+ "jobs": {
+  "count": 5,
+  "start": 0,
+  "total": "5",
+  "job": [
+   {
+    "url": "http://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=50000001&utm_source=job-search-api",
+    "active": 1,
+    "company": {
+     "detail": {
+      "href": "http://www.saramin.co.kr/zf_user/company-info/view?csn=1248100998&utm_source=job-search-api",
+      "name": "삼성전자(주)"
+     }
+    },
+    "position": {
+     "title": "삼성전자(주) 채용 50000001",
+     "industry": {
+      "code": "301",
+      "name": "솔루션·SI·ERP·CRM"
+     },
+     "location": {
+      "code": "101050",
+      "name": "서울 > 관악구"
+     },
+     "job-type": {
+      "code": "1",
+      "name": "정규직"
+     },
+     "job-mid-code": {
+      "code": "2",
+      "name": "IT개발·데이터,연구·R&D"
+     },
+     "job-code": {
+      "code": "84",
+      "name": "IT개발·데이터,연구·R&D"
+     },
+     "experience-level": {
+      "code": 2,
+      "min": 0,
+      "max": 0,
+      "name": "신입"
+     },
+     "required-education-level": {
+      "code": "0",
+      "name": "학력무관"
+     }
+    },
+    "keyword": "반도체",
+    "salary": {
+     "code": "0",
+     "name": "회사내규에 따름"
+    },
+    "id": "50000001",
+    "posting-timestamp": "1790730000",
+    "modification-timestamp": "1790730000",
+    "opening-timestamp": "1790730000",
+    "expiration-timestamp": "1793458799",
+    "close-type": {
+     "code": "1",
+     "name": "접수마감일"
+    }
+   },
+   {
+    "url": "http://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=50000002&utm_source=job-search-api",
+    "active": 1,
+    "company": {
+     "detail": {
+      "name": "삼성전자"
+     }
+    },
+    "position": {
+     "title": "삼성전자 채용 50000002",
+     "industry": {
+      "code": "301",
+      "name": "솔루션·SI·ERP·CRM"
+     },
+     "location": {
+      "code": "101050",
+      "name": "서울 > 관악구"
+     },
+     "job-type": {
+      "code": "1",
+      "name": "정규직"
+     },
+     "job-mid-code": {
+      "code": "2",
+      "name": "연구·R&D"
+     },
+     "job-code": {
+      "code": "84",
+      "name": "연구·R&D"
+     },
+     "experience-level": {
+      "code": 1,
+      "min": 0,
+      "max": 0,
+      "name": "신입"
+     },
+     "required-education-level": {
+      "code": "0",
+      "name": "학력무관"
+     }
+    },
+    "keyword": "반도체",
+    "salary": {
+     "code": "0",
+     "name": "회사내규에 따름"
+    },
+    "id": "50000002",
+    "posting-timestamp": "1788220800",
+    "modification-timestamp": "1788220800",
+    "opening-timestamp": "1788220800",
+    "expiration-timestamp": "1792076399",
+    "close-type": {
+     "code": "1",
+     "name": "접수마감일"
+    }
+   },
+   {
+    "url": "http://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=50000003&utm_source=job-search-api",
+    "active": 1,
+    "company": {
+     "detail": {
+      "href": "http://www.saramin.co.kr/zf_user/company-info/view?csn=1248567543&utm_source=job-search-api",
+      "name": "삼성전자서비스(주)"
+     }
+    },
+    "position": {
+     "title": "삼성전자서비스(주) 채용 50000003",
+     "industry": {
+      "code": "301",
+      "name": "솔루션·SI·ERP·CRM"
+     },
+     "location": {
+      "code": "101050",
+      "name": "서울 > 관악구"
+     },
+     "job-type": {
+      "code": "1",
+      "name": "정규직"
+     },
+     "job-mid-code": {
+      "code": "2",
+      "name": "고객상담·TM"
+     },
+     "job-code": {
+      "code": "84",
+      "name": "고객상담·TM"
+     },
+     "experience-level": {
+      "code": 3,
+      "min": 0,
+      "max": 0,
+      "name": "신입"
+     },
+     "required-education-level": {
+      "code": "0",
+      "name": "학력무관"
+     }
+    },
+    "keyword": "반도체",
+    "salary": {
+     "code": "0",
+     "name": "회사내규에 따름"
+    },
+    "id": "50000003",
+    "posting-timestamp": "1790640000",
+    "modification-timestamp": "1790640000",
+    "opening-timestamp": "1790640000",
+    "expiration-timestamp": "1792508399",
+    "close-type": {
+     "code": "1",
+     "name": "접수마감일"
+    }
+   },
+   {
+    "url": "http://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=50000004&utm_source=job-search-api",
+    "active": 1,
+    "company": {
+     "detail": {
+      "href": "http://www.saramin.co.kr/zf_user/company-info/view?csn=1138600917&utm_source=job-search-api",
+      "name": "(주)사람인"
+     }
+    },
+    "position": {
+     "title": "(주)사람인 채용 50000004",
+     "industry": {
+      "code": "301",
+      "name": "솔루션·SI·ERP·CRM"
+     },
+     "location": {
+      "code": "101050",
+      "name": "서울 > 관악구"
+     },
+     "job-type": {
+      "code": "1",
+      "name": "정규직"
+     },
+     "job-mid-code": {
+      "code": "2",
+      "name": "마케팅·홍보"
+     },
+     "job-code": {
+      "code": "84",
+      "name": "마케팅·홍보"
+     },
+     "experience-level": {
+      "code": 0,
+      "min": 0,
+      "max": 0,
+      "name": "신입"
+     },
+     "required-education-level": {
+      "code": "0",
+      "name": "학력무관"
+     }
+    },
+    "keyword": "반도체",
+    "salary": {
+     "code": "0",
+     "name": "회사내규에 따름"
+    },
+    "id": "50000004",
+    "posting-timestamp": "1790553600",
+    "modification-timestamp": "1790553600",
+    "opening-timestamp": "1790553600",
+    "expiration-timestamp": "1792508399",
+    "close-type": {
+     "code": "1",
+     "name": "접수마감일"
+    }
+   },
+   {
+    "url": "http://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=50000005&utm_source=job-search-api",
+    "active": 1,
+    "company": {
+     "detail": {
+      "href": "http://www.saramin.co.kr/zf_user/company-info/view?csn=1248100998&utm_source=job-search-api",
+      "name": "삼성전자(주)"
+     }
+    },
+    "position": {
+     "title": "삼성전자(주) 채용 50000005",
+     "industry": {
+      "code": "301",
+      "name": "솔루션·SI·ERP·CRM"
+     },
+     "location": {
+      "code": "101050",
+      "name": "서울 > 관악구"
+     },
+     "job-type": {
+      "code": "1",
+      "name": "정규직"
+     },
+     "job-mid-code": {
+      "code": "2",
+      "name": "생산"
+     },
+     "job-code": {
+      "code": "84",
+      "name": "생산"
+     },
+     "experience-level": {
+      "code": 1,
+      "min": 0,
+      "max": 0,
+      "name": "신입"
+     },
+     "required-education-level": {
+      "code": "0",
+      "name": "학력무관"
+     }
+    },
+    "keyword": "반도체",
+    "salary": {
+     "code": "0",
+     "name": "회사내규에 따름"
+    },
+    "id": "50000005",
+    "posting-timestamp": "1785542400",
+    "modification-timestamp": "1785542400",
+    "opening-timestamp": "1785542400",
+    "expiration-timestamp": "1790780399",
+    "close-type": {
+     "code": "1",
+     "name": "접수마감일"
+    }
+   }
+  ]
+ }
+}

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>{{ title }}</title>
+<style>
+  @page { size: A4; margin: 12mm 12mm 14mm 12mm; }
+  :root {
+    --ink: #1b1b1a; --ink-2: #52514e; --ink-3: #8a8985; --rule: #dcdbd6; --band: #f4f3ef;
+    --sb: #0b5e2f; --buy: #1a7f3c; --hold: #6b6a66; --sell: #d03b3b; --ssell: #8f1d1d;
+    --pos: #2a78d6; --neg: #e34948;
+  }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+         font-size: 8.6pt; line-height: 1.38; color: var(--ink); word-break: keep-all; }
+  .num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  header.top { display: flex; justify-content: space-between; align-items: flex-end;
+               border-bottom: 2px solid var(--ink); padding-bottom: 5px; margin-bottom: 8px; }
+  header.top h1 { font-size: 15pt; margin: 0; letter-spacing: -0.3px; }
+  header.top .meta { text-align: right; color: var(--ink-2); font-size: 8pt; }
+  .sample { background: #fff4d6; border: 1px solid #eda100; color: #6b4a00; padding: 2px 6px;
+            border-radius: 3px; font-size: 7.5pt; display: inline-block; }
+  section.mod { margin: 0 0 9px 0; }
+  section.mod > h2 { font-size: 10.5pt; margin: 0 0 4px 0; padding: 3px 6px; background: var(--band);
+                     border-left: 4px solid var(--ink); break-after: avoid; }
+  section.mod > h2 small { font-weight: 400; color: var(--ink-2); font-size: 8pt; margin-left: 6px; }
+  .page-break { break-before: page; }
+  .keep { break-inside: avoid; }
+  table { width: 100%; border-collapse: collapse; }
+  thead { display: table-header-group; }           /* repeat header if a table splits */
+  tr { break-inside: avoid; }
+  th { font-size: 7.6pt; font-weight: 600; color: var(--ink-2); text-align: left;
+       border-bottom: 1px solid var(--ink); padding: 3px 4px; white-space: nowrap; }
+  td { padding: 3px 4px; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+  td .sub { display: block; color: var(--ink-3); font-size: 7pt; }
+  .badge { display: inline-block; min-width: 64px; text-align: center; padding: 2px 6px; border-radius: 3px;
+           font-weight: 700; font-size: 7.8pt; color: #fff; letter-spacing: 0.2px; }
+  .b-strong-buy { background: var(--sb); } .b-buy { background: var(--buy); }
+  .b-hold { background: var(--hold); } .b-sell { background: var(--sell); } .b-strong-sell { background: var(--ssell); }
+  .conf { display: flex; align-items: center; gap: 4px; }
+  .conf .bar { width: 46px; height: 6px; background: #e8e7e2; border-radius: 3px; overflow: hidden; }
+  .conf .bar i { display: block; height: 100%; background: var(--ink-2); }
+  .up { color: #c62828; } .down { color: #1c5cab; }   /* KR convention: 상승=red, 하락=blue */
+  .spark svg { width: 90px; height: auto; display: block; }
+  .charts { display: grid; grid-template-columns: 1.35fr 1fr; gap: 8px; margin-top: 6px; }
+  figure { margin: 0; border: 1px solid var(--rule); padding: 4px; break-inside: avoid; }
+  figure svg { width: 100%; height: auto; display: block; }
+  figcaption { font-size: 7.2pt; color: var(--ink-3); margin-top: 2px; }
+  .zcell { width: 70px; }
+  .zbar { position: relative; height: 7px; background: #f0efec; margin-bottom: 2px; }
+  .zbar::after { content: ""; position: absolute; left: 50%; top: -1px; bottom: -1px; width: 1px; background: var(--ink-3); }
+  .zbar i { position: absolute; top: 0; bottom: 0; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  .card { border: 1px solid var(--rule); border-radius: 4px; padding: 6px 8px; break-inside: avoid; }
+  .card h3 { font-size: 9.5pt; margin: 0 0 3px 0; display: flex; justify-content: space-between; align-items: baseline; }
+  .card ul { margin: 2px 0 0 0; padding-left: 14px; } .card li { margin: 1px 0; }
+  .tag { display: inline-block; font-size: 7pt; border: 1px solid #d03b3b; color: #a32020; border-radius: 2px;
+         padding: 0 4px; margin: 1px 2px 0 0; }
+  .senti { display: flex; align-items: center; gap: 5px; font-size: 7.8pt; color: var(--ink-2); }
+  .foot { font-size: 7pt; color: var(--ink-3); border-top: 1px solid var(--rule); padding-top: 4px; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div>
+    <h1>{{ title }}</h1>
+    <div style="color:var(--ink-2)">정형 퀀트 시그널 + 비정형 LLM 센티먼트 → 최종 매매 타이밍 제안 &nbsp;<span class="sample">샘플 데이터 · 렌더링 검증용</span></div>
+  </div>
+  <div class="meta">기준일 {{ asof }}<br>유니버스 {{ rows|length }}종목 ({{ rows|map(attribute='market')|unique|join('·') }})</div>
+</header>
+
+<section class="mod keep">
+  <h2>① Executive Signal Matrix<small>최종 시그널 · 신뢰도 · 목표가 · 권장 기간</small></h2>
+  <table>
+    <thead><tr>
+      <th>종목</th><th class="num">현재가</th><th>최종 시그널</th><th>신뢰도</th>
+      <th class="num">목표가 (상승여력)</th><th>권장 기간</th><th>60D 추이</th>
+    </tr></thead>
+    <tbody>
+    {% for r in rows %}
+      <tr>
+        <td><b>{{ r.name }}</b><span class="sub">{{ r.ticker }} · {{ r.market }}</span></td>
+        <td class="num">{{ r.price_fmt }}</td>
+        <td><span class="badge b-{{ r.signal|lower|replace(' ', '-') }}">{{ r.signal }}</span></td>
+        <td><div class="conf"><div class="bar"><i style="width:{{ (r.confidence*100)|round(0) }}%"></i></div><span class="num">{{ (r.confidence*100)|round(0)|int }}%</span></div></td>
+        <td class="num">{{ r.target_fmt }} <span class="{{ 'up' if r.upside >= 0 else 'down' }}">({{ '%+.1f'|format(r.upside*100) }}%)</span></td>
+        <td>{{ r.horizon }}</td>
+        <td class="spark">{{ r.spark_svg|safe }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="mod">
+  <h2>② Quantitative &amp; ML Factor Signal<small>시계열 ML 예측 · 팩터 z-score (유니버스 대비)</small></h2>
+  <table class="keep">
+    <thead><tr>
+      <th>종목</th><th class="num">ML 20D 기대수익률</th><th class="num">80% 예측구간</th>
+      <th>모멘텀</th><th>밸류에이션</th><th>변동성(역)</th><th>퀄리티</th><th class="num">종합</th>
+    </tr></thead>
+    <tbody>
+    {% for r in rows %}
+      <tr>
+        <td><b>{{ r.name }}</b></td>
+        <td class="num"><span class="{{ 'up' if r.ml_ret >= 0 else 'down' }}">{{ '%+.1f'|format(r.ml_ret*100) }}%</span></td>
+        <td class="num">{{ '%+.1f'|format(r.ml_lo*100) }}% ~ {{ '%+.1f'|format(r.ml_hi*100) }}%</td>
+        {% for f in ['mom','val','vol','qual'] %}
+        {% set z = r.factors[f] %}
+        <td class="zcell"><div class="zbar">
+          {% if z >= 0 %}<i style="left:50%;width:{{ (z/3*50)|round(1) }}%;background:var(--pos)"></i>
+          {% else %}<i style="right:50%;width:{{ (-z/3*50)|round(1) }}%;background:var(--neg)"></i>{% endif %}
+        </div><span class="sub" style="text-align:center;font-variant-numeric:tabular-nums">{{ '%+.2f'|format(z) }}</span></td>
+        {% endfor %}
+        <td class="num"><b>{{ '%+.2f'|format(r.composite) }}</b></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <div class="charts">
+    <figure>{{ price_chart_svg|safe }}<figcaption>그림 1. {{ rows[0].name }} 종가 및 ML 20영업일 예측 밴드(80%)</figcaption></figure>
+    <figure>{{ factor_chart_svg|safe }}<figcaption>그림 2. 팩터별 z-score 기여도 ({{ rows[0].name }})</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ page 2 ============ -->
+<section class="mod page-break">
+  <h2>③ LLM Unstructured Intelligence<small>뉴스 감성 · 어닝콜/공시 NLP 요약 · 핵심 리스크</small></h2>
+  <div class="cards">
+  {% for r in rows %}
+    <div class="card">
+      <h3><span>{{ r.name }} <span style="font-weight:400;color:var(--ink-3);font-size:7.5pt">{{ r.ticker }}</span></span>
+        <span class="senti">감성 <b class="{{ 'up' if r.sentiment >= 0 else 'down' }}">{{ '%+.2f'|format(r.sentiment) }}</b> · 기사 {{ r.news_n }}건</span></h3>
+      <ul>{% for s in r.llm_summary %}<li>{{ s }}</li>{% endfor %}</ul>
+      <div>{% for t in r.risks %}<span class="tag">⚠ {{ t }}</span>{% endfor %}</div>
+    </div>
+  {% endfor %}
+  </div>
+</section>
+
+<section class="mod keep">
+  <h2>④ Execution &amp; Risk Management<small>편입 비중 · 손절가 · 익절가</small></h2>
+  <table>
+    <thead><tr>
+      <th>종목</th><th>시그널</th><th class="num">권장 비중</th><th class="num">진입 기준가</th>
+      <th class="num">손절가 (Stop-Loss)</th><th class="num">익절가 (Take-Profit)</th><th class="num">손익비</th><th class="num">1D VaR 95%</th>
+    </tr></thead>
+    <tbody>
+    {% for r in rows %}
+      <tr>
+        <td><b>{{ r.name }}</b></td>
+        <td><span class="badge b-{{ r.signal|lower|replace(' ', '-') }}">{{ r.signal }}</span></td>
+        <td class="num">{{ '%.1f'|format(r.weight*100) }}%</td>
+        <td class="num">{{ r.price_fmt }}</td>
+        <td class="num down">{{ r.sl_fmt }} ({{ '%+.1f'|format(r.sl_pct*100) }}%)</td>
+        <td class="num up">{{ r.tp_fmt }} ({{ '%+.1f'|format(r.tp_pct*100) }}%)</td>
+        <td class="num">{{ '%.2f'|format(r.rr) }}</td>
+        <td class="num">{{ '%.1f'|format(r.var*100) }}%</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<div class="foot keep">
+  방법론: 시그널 = 0.6×(퀀트/ML 종합 z) + 0.4×(LLM 감성) → 임계값 매핑. 손절가 = 진입가 − 2.0×ATR(14), 익절가 = 진입가 + 3.0×ATR(14).
+  비중 = 변동성 역가중 × 신뢰도, 종목당 상한 10%. 본 문서의 수치는 레이아웃 검증을 위한 샘플이며 실제 시세·투자 권유가 아닙니다.
+</div>
+
+</body>
+</html>

@@ -1,0 +1,907 @@
+{
+ "totalCount": 2484,
+ "page": 1,
+ "pageSize": 100,
+ "stocks": [
+  {
+   "stockEndType": "stock",
+   "itemCode": "005930",
+   "stockName": "삼성전자",
+   "sosok": "0",
+   "marketValue": "16,749,588",
+   "marketValueRaw": "1674958821192000",
+   "closePriceRaw": "286500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "000660",
+   "stockName": "SK하이닉스",
+   "sosok": "0",
+   "marketValue": "13,609,073",
+   "marketValueRaw": "1360907275995000",
+   "closePriceRaw": "1863000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "005935",
+   "stockName": "삼성전자우",
+   "sosok": "0",
+   "marketValue": "1,781,264",
+   "marketValueRaw": "178126407066000",
+   "closePriceRaw": "222000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "402340",
+   "stockName": "SK스퀘어",
+   "sosok": "0",
+   "marketValue": "1,558,022",
+   "marketValueRaw": "155802241638000",
+   "closePriceRaw": "1181000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "009150",
+   "stockName": "삼성전기",
+   "sosok": "0",
+   "marketValue": "1,121,152",
+   "marketValueRaw": "112115237696000",
+   "closePriceRaw": "1501000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "373220",
+   "stockName": "LG에너지솔루션",
+   "sosok": "0",
+   "marketValue": "823,680",
+   "marketValueRaw": "82368000000000",
+   "closePriceRaw": "352000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "005380",
+   "stockName": "현대차",
+   "sosok": "0",
+   "marketValue": "726,375",
+   "marketValueRaw": "72637537644000",
+   "closePriceRaw": "357000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "207940",
+   "stockName": "삼성바이오로직스",
+   "sosok": "0",
+   "marketValue": "635,575",
+   "marketValueRaw": "63557475723000",
+   "closePriceRaw": "1373000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "105560",
+   "stockName": "KB금융",
+   "sosok": "0",
+   "marketValue": "617,511",
+   "marketValueRaw": "61751134489400",
+   "closePriceRaw": "174100"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "028260",
+   "stockName": "삼성물산",
+   "sosok": "0",
+   "marketValue": "597,588",
+   "marketValueRaw": "59758753598500",
+   "closePriceRaw": "368500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "032830",
+   "stockName": "삼성생명",
+   "sosok": "0",
+   "marketValue": "590,000",
+   "marketValueRaw": "59000000000000",
+   "closePriceRaw": "295000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "012450",
+   "stockName": "한화에어로스페이스",
+   "sosok": "0",
+   "marketValue": "531,619",
+   "marketValueRaw": "53161866431000",
+   "closePriceRaw": "1031000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "034020",
+   "stockName": "두산에너빌리티",
+   "sosok": "0",
+   "marketValue": "529,744",
+   "marketValueRaw": "52974406774200",
+   "closePriceRaw": "82700"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "055550",
+   "stockName": "신한지주",
+   "sosok": "0",
+   "marketValue": "516,865",
+   "marketValueRaw": "51686471313900",
+   "closePriceRaw": "110100"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "329180",
+   "stockName": "HD현대중공업",
+   "sosok": "0",
+   "marketValue": "466,028",
+   "marketValueRaw": "46602783900000",
+   "closePriceRaw": "444000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "000270",
+   "stockName": "기아",
+   "sosok": "0",
+   "marketValue": "453,660",
+   "marketValueRaw": "45365990367600",
+   "closePriceRaw": "116200"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "034730",
+   "stockName": "SK",
+   "sosok": "0",
+   "marketValue": "440,091",
+   "marketValueRaw": "44009140721000",
+   "closePriceRaw": "607000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "006400",
+   "stockName": "삼성SDI",
+   "sosok": "0",
+   "marketValue": "419,851",
+   "marketValueRaw": "41985061130000",
+   "closePriceRaw": "521000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "068270",
+   "stockName": "셀트리온",
+   "sosok": "0",
+   "marketValue": "414,291",
+   "marketValueRaw": "41429119045600",
+   "closePriceRaw": "178100"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "086790",
+   "stockName": "하나금융지주",
+   "sosok": "0",
+   "marketValue": "362,287",
+   "marketValueRaw": "36228676967000",
+   "closePriceRaw": "133700"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "066570",
+   "stockName": "LG전자",
+   "sosok": "0",
+   "marketValue": "342,872",
+   "marketValueRaw": "34287216299000",
+   "closePriceRaw": "210500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "012330",
+   "stockName": "현대모비스",
+   "sosok": "0",
+   "marketValue": "331,438",
+   "marketValueRaw": "33143795865000",
+   "closePriceRaw": "369000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "010120",
+   "stockName": "LS ELECTRIC",
+   "sosok": "0",
+   "marketValue": "310,500",
+   "marketValueRaw": "31050000000000",
+   "closePriceRaw": "207000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "035420",
+   "stockName": "NAVER",
+   "sosok": "0",
+   "marketValue": "298,105",
+   "marketValueRaw": "29810496324000",
+   "closePriceRaw": "196000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "000810",
+   "stockName": "삼성화재",
+   "sosok": "0",
+   "marketValue": "289,316",
+   "marketValueRaw": "28931562504000",
+   "closePriceRaw": "648000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "298040",
+   "stockName": "효성중공업",
+   "sosok": "0",
+   "marketValue": "269,666",
+   "marketValueRaw": "26966592816000",
+   "closePriceRaw": "2892000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "316140",
+   "stockName": "우리금융지주",
+   "sosok": "0",
+   "marketValue": "261,559",
+   "marketValueRaw": "26155922773500",
+   "closePriceRaw": "35500"
+  },
+  {
+   "stockEndType": "etf",
+   "itemCode": "069500",
+   "stockName": "KODEX 200",
+   "sosok": "0",
+   "marketValue": "260,516",
+   "marketValueRaw": "26051636250000",
+   "closePriceRaw": "113145"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "267260",
+   "stockName": "HD현대일렉트릭",
+   "sosok": "0",
+   "marketValue": "257,016",
+   "marketValueRaw": "25701607255000",
+   "closePriceRaw": "713000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "096770",
+   "stockName": "SK이노베이션",
+   "sosok": "0",
+   "marketValue": "251,381",
+   "marketValueRaw": "25138149575600",
+   "closePriceRaw": "148700"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "042660",
+   "stockName": "한화오션",
+   "sosok": "0",
+   "marketValue": "247,276",
+   "marketValueRaw": "24727560895800",
+   "closePriceRaw": "80700"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "005490",
+   "stockName": "POSCO홀딩스",
+   "sosok": "0",
+   "marketValue": "246,837",
+   "marketValueRaw": "24683735660500",
+   "closePriceRaw": "311500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "000150",
+   "stockName": "두산",
+   "sosok": "0",
+   "marketValue": "245,337",
+   "marketValueRaw": "24533660025000",
+   "closePriceRaw": "1515000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "009540",
+   "stockName": "HD한국조선해양",
+   "sosok": "0",
+   "marketValue": "237,090",
+   "marketValueRaw": "23708993860000",
+   "closePriceRaw": "335000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "010130",
+   "stockName": "고려아연",
+   "sosok": "0",
+   "marketValue": "232,942",
+   "marketValueRaw": "23294233404000",
+   "closePriceRaw": "1116000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "042700",
+   "stockName": "한미반도체",
+   "sosok": "0",
+   "marketValue": "231,609",
+   "marketValueRaw": "23160864600000",
+   "closePriceRaw": "243000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "138040",
+   "stockName": "메리츠금융지주",
+   "sosok": "0",
+   "marketValue": "210,021",
+   "marketValueRaw": "21002082761500",
+   "closePriceRaw": "125500"
+  },
+  {
+   "stockEndType": "etf",
+   "itemCode": "360750",
+   "stockName": "TIGER 미국S&P500",
+   "sosok": "0",
+   "marketValue": "209,037",
+   "marketValueRaw": "20903670000000",
+   "closePriceRaw": "26200"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "011200",
+   "stockName": "HMM",
+   "sosok": "0",
+   "marketValue": "196,665",
+   "marketValueRaw": "19666511674500",
+   "closePriceRaw": "20850"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "015760",
+   "stockName": "한국전력",
+   "sosok": "0",
+   "marketValue": "195,478",
+   "marketValueRaw": "19547806144650",
+   "closePriceRaw": "30450"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "017670",
+   "stockName": "SK텔레콤",
+   "sosok": "0",
+   "marketValue": "186,867",
+   "marketValueRaw": "18686734611000",
+   "closePriceRaw": "87000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "033780",
+   "stockName": "KT&G",
+   "sosok": "0",
+   "marketValue": "181,149",
+   "marketValueRaw": "18114924572000",
+   "closePriceRaw": "174500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "010140",
+   "stockName": "삼성중공업",
+   "sosok": "0",
+   "marketValue": "179,960",
+   "marketValueRaw": "17996000000000",
+   "closePriceRaw": "20450"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "051910",
+   "stockName": "LG화학",
+   "sosok": "0",
+   "marketValue": "178,599",
+   "marketValueRaw": "17859862779000",
+   "closePriceRaw": "253000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "010950",
+   "stockName": "S-Oil",
+   "sosok": "0",
+   "marketValue": "176,192",
+   "marketValueRaw": "17619206948000",
+   "closePriceRaw": "156500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "006800",
+   "stockName": "미래에셋증권",
+   "sosok": "0",
+   "marketValue": "175,667",
+   "marketValueRaw": "17566730999850",
+   "closePriceRaw": "32350"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "003550",
+   "stockName": "LG",
+   "sosok": "0",
+   "marketValue": "171,452",
+   "marketValueRaw": "17145173253600",
+   "closePriceRaw": "113400"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "018260",
+   "stockName": "삼성에스디에스",
+   "sosok": "0",
+   "marketValue": "171,005",
+   "marketValueRaw": "17100493800000",
+   "closePriceRaw": "221000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "267250",
+   "stockName": "HD현대",
+   "sosok": "0",
+   "marketValue": "163,516",
+   "marketValueRaw": "16351568595000",
+   "closePriceRaw": "207000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "024110",
+   "stockName": "기업은행",
+   "sosok": "0",
+   "marketValue": "163,074",
+   "marketValueRaw": "16307359021050",
+   "closePriceRaw": "20450"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "003670",
+   "stockName": "포스코퓨처엠",
+   "sosok": "0",
+   "marketValue": "160,637",
+   "marketValueRaw": "16063687332000",
+   "closePriceRaw": "180600"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "079550",
+   "stockName": "LIG디펜스앤에어로스페이스",
+   "sosok": "0",
+   "marketValue": "153,780",
+   "marketValueRaw": "15378000000000",
+   "closePriceRaw": "699000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "035720",
+   "stockName": "카카오",
+   "sosok": "0",
+   "marketValue": "149,734",
+   "marketValueRaw": "14973396721400",
+   "closePriceRaw": "33800"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "086280",
+   "stockName": "현대글로비스",
+   "sosok": "0",
+   "marketValue": "148,500",
+   "marketValueRaw": "14850000000000",
+   "closePriceRaw": "198000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "272210",
+   "stockName": "한화시스템",
+   "sosok": "0",
+   "marketValue": "140,556",
+   "marketValueRaw": "14055602541600",
+   "closePriceRaw": "74400"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "278470",
+   "stockName": "에이피알",
+   "sosok": "0",
+   "marketValue": "138,147",
+   "marketValueRaw": "13814679195000",
+   "closePriceRaw": "369000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "000720",
+   "stockName": "현대건설",
+   "sosok": "0",
+   "marketValue": "136,188",
+   "marketValueRaw": "13618810059500",
+   "closePriceRaw": "122300"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "030200",
+   "stockName": "KT",
+   "sosok": "0",
+   "marketValue": "133,319",
+   "marketValueRaw": "13331947136500",
+   "closePriceRaw": "52900"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "064350",
+   "stockName": "현대로템",
+   "sosok": "0",
+   "marketValue": "127,369",
+   "marketValueRaw": "12736905593100",
+   "closePriceRaw": "116700"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "011070",
+   "stockName": "LG이노텍",
+   "sosok": "0",
+   "marketValue": "126,856",
+   "marketValueRaw": "12685569352000",
+   "closePriceRaw": "536000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "047810",
+   "stockName": "한국항공우주",
+   "sosok": "0",
+   "marketValue": "125,158",
+   "marketValueRaw": "12515803738800",
+   "closePriceRaw": "128400"
+  },
+  {
+   "stockEndType": "etf",
+   "itemCode": "133690",
+   "stockName": "TIGER 미국나스닥100",
+   "sosok": "0",
+   "marketValue": "121,313",
+   "marketValueRaw": "12131316300000",
+   "closePriceRaw": "184985"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "005830",
+   "stockName": "DB손해보험",
+   "sosok": "0",
+   "marketValue": "120,521",
+   "marketValueRaw": "12052064216000",
+   "closePriceRaw": "184000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "003490",
+   "stockName": "대한항공",
+   "sosok": "0",
+   "marketValue": "115,989",
+   "marketValueRaw": "11598949183500",
+   "closePriceRaw": "31500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "443060",
+   "stockName": "HD현대마린솔루션",
+   "sosok": "0",
+   "marketValue": "107,600",
+   "marketValueRaw": "10760030400000",
+   "closePriceRaw": "240000"
+  },
+  {
+   "stockEndType": "etf",
+   "itemCode": "396500",
+   "stockName": "TIGER 반도체TOP10",
+   "sosok": "0",
+   "marketValue": "104,791",
+   "marketValueRaw": "10479070000000",
+   "closePriceRaw": "39395"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "307950",
+   "stockName": "현대오토에버",
+   "sosok": "0",
+   "marketValue": "104,348",
+   "marketValueRaw": "10434825151000",
+   "closePriceRaw": "380500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "071050",
+   "stockName": "한국금융지주",
+   "sosok": "0",
+   "marketValue": "103,985",
+   "marketValueRaw": "10398470107200",
+   "closePriceRaw": "186600"
+  },
+  {
+   "stockEndType": "etf",
+   "itemCode": "379800",
+   "stockName": "KODEX 미국S&P500",
+   "sosok": "0",
+   "marketValue": "103,883",
+   "marketValueRaw": "10388303000000",
+   "closePriceRaw": "23810"
+  },
+  {
+   "stockEndType": "etf",
+   "itemCode": "102110",
+   "stockName": "TIGER 200",
+   "sosok": "0",
+   "marketValue": "103,611",
+   "marketValueRaw": "10361104000000",
+   "closePriceRaw": "113360"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "078930",
+   "stockName": "GS",
+   "sosok": "0",
+   "marketValue": "102,742",
+   "marketValueRaw": "10274241747000",
+   "closePriceRaw": "110600"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "006260",
+   "stockName": "LS",
+   "sosok": "0",
+   "marketValue": "100,620",
+   "marketValueRaw": "10062000000000",
+   "closePriceRaw": "322500"
+  },
+  {
+   "stockEndType": "etf",
+   "itemCode": "379810",
+   "stockName": "KODEX 미국나스닥100",
+   "sosok": "0",
+   "marketValue": "98,460",
+   "marketValueRaw": "9845973500000",
+   "closePriceRaw": "27665"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "047050",
+   "stockName": "포스코인터내셔널",
+   "sosok": "0",
+   "marketValue": "97,637",
+   "marketValueRaw": "9763714734000",
+   "closePriceRaw": "55500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "028050",
+   "stockName": "삼성E&A",
+   "sosok": "0",
+   "marketValue": "97,216",
+   "marketValueRaw": "9721600000000",
+   "closePriceRaw": "49600"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "005940",
+   "stockName": "NH투자증권",
+   "sosok": "0",
+   "marketValue": "96,363",
+   "marketValueRaw": "9636279340500",
+   "closePriceRaw": "26100"
+  },
+  {
+   "stockEndType": "etf",
+   "itemCode": "488770",
+   "stockName": "KODEX 머니마켓액티브",
+   "sosok": "0",
+   "marketValue": "96,214",
+   "marketValueRaw": "9621407085000",
+   "closePriceRaw": "105645"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "323410",
+   "stockName": "카카오뱅크",
+   "sosok": "0",
+   "marketValue": "95,424",
+   "marketValueRaw": "9542408740000",
+   "closePriceRaw": "20000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "000500",
+   "stockName": "가온전선",
+   "sosok": "0",
+   "marketValue": "94,693",
+   "marketValueRaw": "9469279026000",
+   "closePriceRaw": "318000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "180640",
+   "stockName": "한진칼",
+   "sosok": "0",
+   "marketValue": "93,801",
+   "marketValueRaw": "9380099637500",
+   "closePriceRaw": "140500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "003230",
+   "stockName": "삼양식품",
+   "sosok": "0",
+   "marketValue": "91,752",
+   "marketValueRaw": "9175212270000",
+   "closePriceRaw": "1218000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "259960",
+   "stockName": "크래프톤",
+   "sosok": "0",
+   "marketValue": "91,144",
+   "marketValueRaw": "9114363318000",
+   "closePriceRaw": "198500"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "007660",
+   "stockName": "이수페타시스",
+   "sosok": "0",
+   "marketValue": "87,504",
+   "marketValueRaw": "8750378904800",
+   "closePriceRaw": "119200"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "090430",
+   "stockName": "아모레퍼시픽",
+   "sosok": "0",
+   "marketValue": "83,177",
+   "marketValueRaw": "8317670329800",
+   "closePriceRaw": "142200"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "0126Z0",
+   "stockName": "삼성에피스홀딩스",
+   "sosok": "0",
+   "marketValue": "82,363",
+   "marketValueRaw": "8236289219000",
+   "closePriceRaw": "331000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "016360",
+   "stockName": "삼성증권",
+   "sosok": "0",
+   "marketValue": "81,531",
+   "marketValueRaw": "8153090000000",
+   "closePriceRaw": "91300"
+  },
+  {
+   "stockEndType": "etf",
+   "itemCode": "278530",
+   "stockName": "KODEX 200TR",
+   "sosok": "0",
+   "marketValue": "79,914",
+   "marketValueRaw": "7991392500000",
+   "closePriceRaw": "40950"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "047040",
+   "stockName": "대우건설",
+   "sosok": "0",
+   "marketValue": "72,731",
+   "marketValueRaw": "7273065192600",
+   "closePriceRaw": "17700"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "161390",
+   "stockName": "한국타이어앤테크놀로지",
+   "sosok": "0",
+   "marketValue": "70,980",
+   "marketValueRaw": "7098041453700",
+   "closePriceRaw": "57300"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "021240",
+   "stockName": "코웨이",
+   "sosok": "0",
+   "marketValue": "70,555",
+   "marketValueRaw": "7055512372200",
+   "closePriceRaw": "99700"
+  },
+  {
+   "stockEndType": "etf",
+   "itemCode": "459580",
+   "stockName": "KODEX CD금리액티브(합성)",
+   "sosok": "0",
+   "marketValue": "69,792",
+   "marketValueRaw": "6979220062500",
+   "closePriceRaw": "1075795"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "039490",
+   "stockName": "키움증권",
+   "sosok": "0",
+   "marketValue": "69,505",
+   "marketValueRaw": "6950503740000",
+   "closePriceRaw": "265000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "000880",
+   "stockName": "한화",
+   "sosok": "0",
+   "marketValue": "69,381",
+   "marketValueRaw": "6938089499700",
+   "closePriceRaw": "130100"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "352820",
+   "stockName": "하이브",
+   "sosok": "0",
+   "marketValue": "67,979",
+   "marketValueRaw": "6797948037200",
+   "closePriceRaw": "157700"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "064400",
+   "stockName": "LG씨엔에스",
+   "sosok": "0",
+   "marketValue": "67,820",
+   "marketValueRaw": "6782016360000",
+   "closePriceRaw": "70000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "128940",
+   "stockName": "한미약품",
+   "sosok": "0",
+   "marketValue": "66,489",
+   "marketValueRaw": "6648904329000",
+   "closePriceRaw": "519000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "009830",
+   "stockName": "한화솔루션",
+   "sosok": "0",
+   "marketValue": "66,118",
+   "marketValueRaw": "6611840558400",
+   "closePriceRaw": "29400"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "062040",
+   "stockName": "산일전기",
+   "sosok": "0",
+   "marketValue": "62,818",
+   "marketValueRaw": "6281784250000",
+   "closePriceRaw": "205000"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "267270",
+   "stockName": "HD건설기계",
+   "sosok": "0",
+   "marketValue": "62,174",
+   "marketValueRaw": "6217407827400",
+   "closePriceRaw": "130900"
+  },
+  {
+   "stockEndType": "stock",
+   "itemCode": "032640",
+   "stockName": "LG유플러스",
+   "sosok": "0",
+   "marketValue": "62,094",
+   "marketValueRaw": "6209377719160",
+   "closePriceRaw": "14630"
+  }
+ ]
+}

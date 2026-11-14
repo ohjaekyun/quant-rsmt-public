@@ -1,0 +1,102 @@
+{
+ "meta": {
+  "currency": "USD",
+  "symbol": "AAPL",
+  "exchangeName": "NMS",
+  "fullExchangeName": "NasdaqGS",
+  "instrumentType": "EQUITY",
+  "longName": "Apple Inc.",
+  "shortName": "Apple Inc.",
+  "exchangeTimezoneName": "America/New_York",
+  "currentTradingPeriod": {
+   "regular": {
+    "timezone": "EDT",
+    "start": 1790256600,
+    "end": 1790280000,
+    "gmtoffset": -14400
+   }
+  }
+ },
+ "timestamp": [
+  1789651800,
+  1789738200,
+  1789997400,
+  1790083800,
+  1790170200,
+  1790256600
+ ],
+ "events": {
+  "splits": {
+   "1598880600": {
+    "date": 1598880600,
+    "numerator": 4.0,
+    "denominator": 1.0,
+    "splitRatio": "4:1"
+   }
+  },
+  "dividends": {
+   "1786455000": {
+    "amount": 0.27,
+    "date": 1786455000
+   }
+  }
+ },
+ "indicators": {
+  "quote": [
+   {
+    "open": [
+     332.0,
+     333.5,
+     335.2,
+     336.1,
+     334.9,
+     337.5
+    ],
+    "high": [
+     334.0,
+     335.9,
+     337.0,
+     336.8,
+     337.9,
+     339.0
+    ],
+    "low": [
+     331.2,
+     333.0,
+     334.8,
+     333.9,
+     334.2,
+     336.9
+    ],
+    "close": [
+     333.1,
+     335.0,
+     336.0,
+     334.5,
+     337.02,
+     338.1
+    ],
+    "volume": [
+     41000000,
+     52000000,
+     null,
+     38000000,
+     31587800,
+     9000000
+    ]
+   }
+  ],
+  "adjclose": [
+   {
+    "adjclose": [
+     332.7669,
+     334.665,
+     335.664,
+     334.1655,
+     336.68298,
+     337.7619
+    ]
+   }
+  ]
+ }
+}

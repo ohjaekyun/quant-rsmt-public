@@ -1,0 +1,73 @@
+{
+ "stockListSortType": "INDUSTRY",
+ "stocks": [
+  {
+   "stockType": "domestic",
+   "stockEndType": "konex",
+   "itemCode": "0070X0",
+   "reutersCode": "0070X0",
+   "stockName": "에스테크엠",
+   "sosok": "2",
+   "closePrice": "11,600",
+   "compareToPreviousClosePrice": "1,500",
+   "compareToPreviousPrice": {
+    "code": "2",
+    "text": "상승",
+    "name": "RISING"
+   },
+   "fluctuationsRatio": "14.85",
+   "accumulatedTradingVolume": "1",
+   "accumulatedTradingValue": "-",
+   "localTradedAt": "2026-09-23T20:20:24+09:00",
+   "marketValue": "175",
+   "nav": "N/A",
+   "threeMonthEarningRate": "N/A",
+   "marketStatus": "CLOSE",
+   "tradeStopType": {
+    "code": "1",
+    "text": "운영.Trading",
+    "name": "TRADING"
+   },
+   "tradableStatus": "tradable",
+   "tradableStatusCode": "ok",
+   "tradableStatusUpdatedAt": "2026-09-23T08:01:48.95+09:00",
+   "stockExchangeType": {
+    "code": "KN",
+    "zoneId": "Asia/Seoul",
+    "nationType": "KOR",
+    "delayTime": 0,
+    "startTime": "0900",
+    "endTime": "1530",
+    "closePriceSendTime": "1630",
+    "nameKor": "코넥스",
+    "nameEng": "KONEX",
+    "stockType": "domestic",
+    "nationCode": "KOR",
+    "nationName": "대한민국",
+    "name": "KONEX"
+   },
+   "endUrl": "https://m.stock.naver.com/domestic/stock/0070X0",
+   "newPcUrl": "https://stock.naver.com/domestic/stock/0070X0",
+   "stockMiniImageChart": "https://financial-vn.pstatic.net/chart/mobile/mini/krx/0070X0_interest.png",
+   "closePriceRaw": "11600",
+   "compareToPreviousClosePriceRaw": "1500",
+   "accumulatedTradingVolumeRaw": "1",
+   "accumulatedTradingValueRaw": "0",
+   "marketValueRaw": "17516000000"
+  }
+ ],
+ "groupInfo": {
+  "no": 283,
+  "name": "전기제품",
+  "totalCount": 69,
+  "changeRate": "0.01",
+  "riseCount": 33,
+  "fallCount": 31,
+  "steadyCount": 5
+ },
+ "totalCount": 69,
+ "page": 1,
+ "pageSize": 1,
+ "localOpenTimeDesc": "",
+ "marketStatus": "CLOSE"
+}
